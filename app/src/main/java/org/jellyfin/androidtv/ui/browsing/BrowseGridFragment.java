@@ -111,7 +111,7 @@ class LeftAlignedVerticalGridPresenter extends CustomVerticalGridPresenter {
 }
 
 public class BrowseGridFragment extends Fragment implements View.OnKeyListener {
-    private static final int CHUNK_SIZE_MINIMUM = 60;
+    private static final int CHUNK_SIZE_MINIMUM = 150;
     private static final int MIN_NUM_CARDS = 5;
     private static final double CARD_SPACING_PCT = 4.0;
     private static final double CARD_SPACING_HORIZONTAL_BANNER_PCT = 0.5;
@@ -833,7 +833,7 @@ public class BrowseGridFragment extends Fragment implements View.OnKeyListener {
         mCardPresenter.setUniformAspect(true);
         int chunkSize = mRowDef.getChunkSize();
         if (mCardsScreenEst > 0 && mCardsScreenEst >= chunkSize) {
-            chunkSize = Math.min(mCardsScreenEst + mCardsScreenStride, 150);
+            chunkSize = Math.min(mCardsScreenEst + mCardsScreenStride, 300);
         }
         switch (mRowDef.getQueryType()) {
             case NextUp: mAdapter = new ItemRowAdapter(requireContext(), mRowDef.getNextUpQuery(), true, mCardPresenter, null); break;

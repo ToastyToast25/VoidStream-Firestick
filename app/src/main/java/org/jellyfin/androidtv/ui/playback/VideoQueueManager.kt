@@ -6,6 +6,7 @@ class VideoQueueManager {
 	private var _currentVideoQueue: List<BaseItemDto> = emptyList()
 	private var _currentMediaPosition = -1
 	private var _lastPlayedAudioLanguageIsoCode: String? = null
+	private var _selectedMediaSourceIndex: Int = 0
 
 	fun setCurrentVideoQueue(items: List<BaseItemDto>?) {
 		if (items.isNullOrEmpty()) return clearVideoQueue()
@@ -32,9 +33,16 @@ class VideoQueueManager {
 		_lastPlayedAudioLanguageIsoCode = isoCode
 	}
 
+	fun getSelectedMediaSourceIndex() = _selectedMediaSourceIndex
+
+	fun setSelectedMediaSourceIndex(index: Int) {
+		_selectedMediaSourceIndex = index
+	}
+
 	fun clearVideoQueue() {
 		_currentVideoQueue = emptyList()
 		_currentMediaPosition = -1
 		_lastPlayedAudioLanguageIsoCode = null
+		_selectedMediaSourceIndex = 0
 	}
 }

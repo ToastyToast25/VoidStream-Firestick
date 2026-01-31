@@ -181,6 +181,11 @@ public class PlaybackController implements PlaybackControllerNotifiable {
             if (mediaSources == null || mediaSources.isEmpty()) {
                 return null;
             } else {
+                // Use the selected media source index if valid
+                int selectedIndex = KoinJavaComponent.<VideoQueueManager>get(VideoQueueManager.class).getSelectedMediaSourceIndex();
+                if (selectedIndex >= 0 && selectedIndex < mediaSources.size()) {
+                    return mediaSources.get(selectedIndex);
+                }
                 // Prefer the media source with the same id as the item
                 for (MediaSourceInfo mediaSource : mediaSources) {
                     if (UUIDSerializerKt.toUUIDOrNull(mediaSource.getId()).equals(item.getId())) {

@@ -22,6 +22,7 @@ import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.exception.ApiClientException
 import org.jellyfin.sdk.api.client.extensions.sessionApi
 import org.jellyfin.sdk.api.client.extensions.userLibraryApi
+import org.jellyfin.sdk.api.sockets.SocketApiState
 import org.jellyfin.sdk.api.sockets.subscribe
 import org.jellyfin.sdk.api.sockets.subscribeGeneralCommand
 import org.jellyfin.sdk.api.sockets.subscribeGeneralCommands
@@ -52,6 +53,24 @@ class SocketHandler(
 	private val playbackHelper: PlaybackHelper,
 ) {
 	private val coroutineScope = CoroutineScope(Dispatchers.IO)
+
+	suspend fun reconnectIfNeeded() {
+		try {
+			val state = api.webSocket.state.value
+			Timber.i("WebSocket state on resume: $state")
+			if (state is org.jellyfin.sdk.api.sockets.SocketApiState.Disconnected) {
+				Timber.i("WebSocket is disconnected, triggering reconnection via re-subscribe")
+				// Re-subscribing forces the SDK to reconnect
+				withContext(Dispatchers.IO) {
+					api.webSocket.subscribe<LibraryChangedMessage>()
+						.launchIn(coroutineScope)
+				}
+				Timber.i("WebSocket reconnection triggered via re-subscribe")
+			}
+		} catch (err: Exception) {
+			Timber.e(err, "Failed to reconnect WebSocket")
+		}
+	}
 
 	suspend fun updateSession() {
 		try {

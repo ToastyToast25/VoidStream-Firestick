@@ -619,11 +619,13 @@ public class CustomPlaybackOverlayFragment extends Fragment implements LiveTvGui
                     if (!mIsVisible) {
                         if (!playbackControllerContainer.getValue().getPlaybackController().isLiveTv()) {
                             if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                                playbackControllerContainer.getValue().getPlaybackController().fastForward();
                                 setFadingEnabled(true);
                                 return true;
                             }
 
                             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+                                playbackControllerContainer.getValue().getPlaybackController().rewind();
                                 setFadingEnabled(true);
                                 return true;
                             }

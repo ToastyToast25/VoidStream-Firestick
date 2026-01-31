@@ -9,10 +9,13 @@ class VideoSpeedController(
 		SPEED_0_50(speed = 0.5f),
 		SPEED_0_75(speed = 0.75f),
 		SPEED_1_00(speed = 1.0f),
+		SPEED_1_10(speed = 1.10f),
 		SPEED_1_25(speed = 1.25f),
 		SPEED_1_50(speed = 1.50f),
 		SPEED_1_75(speed = 1.75f),
 		SPEED_2_00(speed = 2.0f),
+		SPEED_2_50(speed = 2.50f),
+		SPEED_3_00(speed = 3.0f),
 	}
 
 	companion object {

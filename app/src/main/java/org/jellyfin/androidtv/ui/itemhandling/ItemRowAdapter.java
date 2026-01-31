@@ -531,7 +531,7 @@ public class ItemRowAdapter extends MutableObjectAdapter<Object> {
         }
         if (chunkSize > 0) {
             // we can use chunkSize as indicator on when to load
-            if (pos >= (itemsLoaded - (chunkSize / 1.7))) {
+            if (pos >= (itemsLoaded - (chunkSize / 1.2))) {
                 Timber.d("Loading more items trigger pos <%s> itemsLoaded <%s> from total <%s> with chunkSize <%s>", pos, itemsLoaded, totalItems, chunkSize);
                 retrieveNext();
             }

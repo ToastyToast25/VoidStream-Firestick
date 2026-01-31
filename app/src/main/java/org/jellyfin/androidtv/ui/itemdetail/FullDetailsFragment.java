@@ -1383,7 +1383,7 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                 if (!isAdded()) {
                     return;
                 }
-                KoinJavaComponent.<PlaybackLauncher>get(PlaybackLauncher.class).launch(getContext(), response, pos, false, 0, shuffle);
+                KoinJavaComponent.<PlaybackLauncher>get(PlaybackLauncher.class).launch(getContext(), response, pos, false, 0, shuffle, mDetailsOverviewRow != null ? mDetailsOverviewRow.getSelectedMediaSourceIndex() : 0);
             }
         });
     }

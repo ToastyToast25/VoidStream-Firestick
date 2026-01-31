@@ -878,13 +878,11 @@ public class CardPresenter extends Presenter {
                         int width = mediaStream.getWidth();
                         int height = mediaStream.getHeight();
 
-                        if (height >= 2160) {
+                        if (width >= 3800 || height >= 2000) {
                             return "4K";
-                        } else if (height >= 1440) {
+                        } else if (width >= 1800 || height >= 1000) {
                             return "FHD";
-                        } else if (height >= 1080) {
-                            return "HD";
-                        } else if (height >= 720) {
+                        } else if (width >= 1280 || height >= 720) {
                             return "HD";
                         } else {
                             return "SD";

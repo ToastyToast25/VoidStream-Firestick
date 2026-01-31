@@ -213,13 +213,14 @@ class MainActivity : FragmentActivity() {
 
 		screensaverViewModel.activityPaused = false
 
-		// Ensure WebSocket connection is active
+		// Reconnect WebSocket and update session after standby
 		lifecycleScope.launch(Dispatchers.IO) {
 			try {
+				socketHandler.reconnectIfNeeded()
 				socketHandler.updateSession()
-				Timber.i("WebSocket session updated in MainActivity.onResume")
+				Timber.i("WebSocket reconnected and session updated in MainActivity.onResume")
 			} catch (e: Exception) {
-				Timber.e(e, "Failed to update WebSocket session in MainActivity.onResume")
+				Timber.e(e, "Failed to reconnect WebSocket in MainActivity.onResume")
 			}
 		}
 
