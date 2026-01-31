@@ -1,6 +1,7 @@
 package org.jellyfin.androidtv.ui.playback.overlay.action
 
 import android.content.Context
+import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
 import android.widget.PopupMenu
@@ -30,7 +31,8 @@ class SelectAudioAction(
 		val currentAudioIndex = playbackController.audioStreamIndex
 
 		dismissPopup()
-		popup = PopupMenu(context, view, Gravity.END).apply {
+		val themedContext = ContextThemeWrapper(context, R.style.PopupMenuCompact)
+		popup = PopupMenu(themedContext, view, Gravity.END).apply {
 			with(menu) {
 				for (track in audioTracks) {
 					add(0, track.index, track.index, track.displayTitle).apply {

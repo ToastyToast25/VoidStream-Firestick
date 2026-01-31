@@ -142,6 +142,13 @@
     <style name="PopupMenu" parent="android:Widget.Material.PopupMenu">
         <item name="android:popupBackground">@drawable/popup_menu_back</item>
         <item name="android:textColor">@color/indigo_dye</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="PopupMenuCompact" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:listPreferredItemHeightSmall">36dp</item>
     </style>
 
     <style name="PopupWindow" parent="android:Widget.Material.PopupWindow">

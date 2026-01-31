@@ -1,6 +1,7 @@
 package org.jellyfin.androidtv.ui.playback.overlay.action
 
 import android.content.Context
+import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.View
 import android.widget.PopupMenu
@@ -37,7 +38,8 @@ class ClosedCaptionsAction(
 
 		videoPlayerAdapter.leanbackOverlayFragment.setFading(false)
 		removePopup()
-		popup = PopupMenu(context, view, Gravity.END).apply {
+		val themedContext = ContextThemeWrapper(context, R.style.PopupMenuCompact)
+		popup = PopupMenu(themedContext, view, Gravity.END).apply {
 			with(menu) {
 				var order = 0
 				add(0, -1, order++, context.getString(R.string.lbl_none)).apply {
