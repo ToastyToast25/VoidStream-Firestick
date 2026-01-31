@@ -53,6 +53,7 @@ import org.jellyfin.androidtv.ui.composable.AsyncImage
 import org.jellyfin.androidtv.ui.composable.modifier.overscan
 import org.jellyfin.androidtv.ui.navigation.Destinations
 import org.jellyfin.androidtv.ui.navigation.NavigationRepository
+import org.jellyfin.androidtv.ui.playback.VideoQueueManager
 import org.jellyfin.androidtv.util.apiclient.getUrl
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
@@ -133,11 +134,18 @@ fun NextUpOverlay(
 
 	val api: ApiClient = koinInject()
 	val userPreferences: UserPreferences = koinInject()
+	val videoQueueManager: VideoQueueManager = koinInject()
 	val confirmTimer = remember { Animatable(0f) }
+
+	// Check if "still watching" pause is active — disable auto-timer to require user confirmation
+	val isStillWatchingPause = remember { videoQueueManager.isStillWatchingPause }
+	if (isStillWatchingPause) {
+		videoQueueManager.isStillWatchingPause = false
+	}
 
 	LaunchedEffect(item) {
 		val durationMillis = userPreferences[UserPreferences.nextUpTimeout]
-		if (durationMillis == NEXTUP_TIMER_DISABLED) {
+		if (isStillWatchingPause || durationMillis == NEXTUP_TIMER_DISABLED) {
 			confirmTimer.snapTo(0f)
 		} else {
 			confirmTimer.animateTo(

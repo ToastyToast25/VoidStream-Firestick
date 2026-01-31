@@ -111,6 +111,12 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		var nextUpTimeout = intPreference("next_up_timeout", 1000 * 7)
 
 		/**
+		 * Number of consecutive episodes before showing "Are you still watching?" prompt.
+		 * 0 = disabled.
+		 */
+		var stillWatchingEpisodeThreshold = intPreference("still_watching_episode_threshold", 0)
+
+		/**
 		 * Duration in milliseconds before player UI controls automatically hide
 		 * Default: 15000ms (15 seconds)
 		 */
@@ -252,6 +258,11 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		var carouselIncludeSeries = booleanPreference("carousel_include_series", false)
 
 		/**
+		 * Comma-separated list of library IDs to exclude from the carousel
+		 */
+		var carouselExcludedLibraries = stringPreference("carousel_excluded_libraries", "")
+
+		/**
 		 * Subtitles foreground color
 		 */
 		var subtitlesBackgroundColor = longPreference("subtitles_background_color", 0x00FFFFFF)
@@ -265,6 +276,11 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		 * Subtitles stroke color
 		 */
 		var subtitleTextStrokeColor = longPreference("subtitles_text_stroke_color", 0xFF000000)
+
+		/**
+		 * Subtitles text opacity (0.0 = transparent, 1.0 = fully opaque)
+		 */
+		var subtitlesTextOpacity = floatPreference("subtitles_text_opacity", 1.0f)
 
 		/**
 		 * Subtitles font size (1.0f = 100%)

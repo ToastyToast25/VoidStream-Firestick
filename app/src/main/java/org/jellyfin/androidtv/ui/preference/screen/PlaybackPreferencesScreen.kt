@@ -161,6 +161,24 @@ fun PlaybackPreferencesScreenCompose(
                 )
             }
 
+            // Still Watching
+            item {
+                val (stillWatchingThreshold, setStillWatchingThreshold) = rememberPreferenceState(
+                    preference = UserPreferences.stillWatchingEpisodeThreshold,
+                    preferences = userPreferences
+                )
+
+                SeekBarPreference(
+                    title = "Still watching prompt",
+                    value = stillWatchingThreshold,
+                    range = 0..10,
+                    step = 1,
+                    description = if (stillWatchingThreshold == 0) "Disabled" else "After $stillWatchingThreshold episodes",
+                    valueFormatter = { value -> if (value == 0) "Off" else "$value" },
+                    onValueChange = setStillWatchingThreshold
+                )
+            }
+
             // Cinema Mode
             item {
                 val (cinemaModeEnabled, setCinemaModeEnabled) = rememberPreferenceState(
@@ -486,6 +504,27 @@ fun PlaybackPreferencesScreenCompose(
                     valueFormatter = { "$it%" },
                     onValueChange = { value ->
                         setSubtitlesTextSize(value / 100f)
+                    }
+                )
+            }
+
+            // Subtitle Opacity
+            item {
+                val (subtitlesTextOpacity, setSubtitlesTextOpacity) = rememberPreferenceState(
+                    preference = UserPreferences.subtitlesTextOpacity,
+                    preferences = userPreferences
+                )
+                val currentOpacity = (subtitlesTextOpacity * 100f).roundToInt()
+
+                SeekBarPreference(
+                    title = "Subtitle opacity",
+                    value = currentOpacity,
+                    range = 10..100,
+                    step = 10,
+                    description = "$currentOpacity%",
+                    valueFormatter = { "$it%" },
+                    onValueChange = { value ->
+                        setSubtitlesTextOpacity(value / 100f)
                     }
                 )
             }

@@ -117,8 +117,12 @@ public class VideoManager {
         mExoPlayerView.setPlayer(mExoPlayer);
         int strokeColor = userPreferences.get(UserPreferences.Companion.getSubtitleTextStrokeColor()).intValue();
         int textWeight = userPreferences.get(UserPreferences.Companion.getSubtitlesTextWeightValue());
+        float textOpacity = userPreferences.get(UserPreferences.Companion.getSubtitlesTextOpacity());
+        int rawTextColor = userPreferences.get(UserPreferences.Companion.getSubtitlesTextColor()).intValue();
+        int textAlpha = Math.round(Color.alpha(rawTextColor) * textOpacity);
+        int textColor = Color.argb(textAlpha, Color.red(rawTextColor), Color.green(rawTextColor), Color.blue(rawTextColor));
         CaptionStyleCompat subtitleStyle = new CaptionStyleCompat(
-                userPreferences.get(UserPreferences.Companion.getSubtitlesTextColor()).intValue(),
+                textColor,
                 userPreferences.get(UserPreferences.Companion.getSubtitlesBackgroundColor()).intValue(),
                 Color.TRANSPARENT,
                 Color.alpha(strokeColor) == 0 ? CaptionStyleCompat.EDGE_TYPE_NONE : CaptionStyleCompat.EDGE_TYPE_OUTLINE,

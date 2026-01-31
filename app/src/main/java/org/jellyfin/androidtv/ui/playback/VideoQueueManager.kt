@@ -7,6 +7,8 @@ class VideoQueueManager {
 	private var _currentMediaPosition = -1
 	private var _lastPlayedAudioLanguageIsoCode: String? = null
 	private var _selectedMediaSourceIndex: Int = 0
+	private var _isTransitioningFromNextUp: Boolean = false
+	private var _consecutiveEpisodesPlayed: Int = 0
 
 	fun setCurrentVideoQueue(items: List<BaseItemDto>?) {
 		if (items.isNullOrEmpty()) return clearVideoQueue()
@@ -39,10 +41,28 @@ class VideoQueueManager {
 		_selectedMediaSourceIndex = index
 	}
 
+	var isTransitioningFromNextUp: Boolean
+		get() = _isTransitioningFromNextUp
+		set(value) { _isTransitioningFromNextUp = value }
+
+	var consecutiveEpisodesPlayed: Int
+		get() = _consecutiveEpisodesPlayed
+		set(value) { _consecutiveEpisodesPlayed = value }
+
+	/** When true, the next-up screen should disable auto-timer to require user confirmation */
+	var isStillWatchingPause: Boolean = false
+
+	fun resetConsecutiveCount() {
+		_consecutiveEpisodesPlayed = 0
+		isStillWatchingPause = false
+	}
+
 	fun clearVideoQueue() {
 		_currentVideoQueue = emptyList()
 		_currentMediaPosition = -1
 		_lastPlayedAudioLanguageIsoCode = null
 		_selectedMediaSourceIndex = 0
+		_isTransitioningFromNextUp = false
+		_consecutiveEpisodesPlayed = 0
 	}
 }

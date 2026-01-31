@@ -12,8 +12,12 @@ import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -45,7 +49,11 @@ import org.jellyfin.androidtv.preference.constant.CarouselSortBy
 import org.jellyfin.androidtv.preference.constant.RatingType
 import org.jellyfin.androidtv.preference.constant.ScreensaverSortBy
 import org.jellyfin.androidtv.preference.constant.WatchedIndicatorBehavior
+import org.jellyfin.androidtv.data.repository.UserViewsRepository
 import org.jellyfin.androidtv.util.getQuantityString
+import org.jellyfin.sdk.model.api.BaseItemDto
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.sp
 import kotlin.system.exitProcess
 
 @Composable
@@ -443,6 +451,25 @@ fun CustomizationPreferencesScreenCompose(
         }
 
         item {
+            var showLibraryDialog by remember { mutableStateOf(false) }
+            val excludedLibraries = userPreferences[UserPreferences.carouselExcludedLibraries]
+            val excludedCount = excludedLibraries.split(",").filter { it.isNotBlank() }.size
+
+            ActionPreference(
+                title = "Carousel Library Filter",
+                description = if (excludedCount > 0) "$excludedCount libraries excluded" else "All libraries included",
+                onClick = { showLibraryDialog = true }
+            )
+
+            if (showLibraryDialog) {
+                CarouselLibraryFilterDialog(
+                    userPreferences = userPreferences,
+                    onDismiss = { showLibraryDialog = false }
+                )
+            }
+        }
+
+        item {
             val (seriesThumbnailsEnabled, setSeriesThumbnailsEnabled) = rememberPreferenceState(
                 preference = UserPreferences.seriesThumbnailsEnabled,
                 preferences = userPreferences
@@ -705,4 +732,75 @@ fun CustomizationPreferencesScreenCompose(
             }
         )
     }
+}
+
+@Composable
+fun CarouselLibraryFilterDialog(
+    userPreferences: UserPreferences,
+    onDismiss: () -> Unit
+) {
+    val userViewsRepository = org.koin.compose.koinInject<UserViewsRepository>()
+    var libraries by remember { mutableStateOf<List<BaseItemDto>>(emptyList()) }
+    var excludedIds by remember {
+        mutableStateOf(
+            userPreferences[UserPreferences.carouselExcludedLibraries]
+                .split(",")
+                .filter { it.isNotBlank() }
+                .map { it.trim() }
+                .toSet()
+        )
+    }
+
+    LaunchedEffect(Unit) {
+        userViewsRepository.views.collect { views ->
+            libraries = views.toList()
+        }
+    }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Carousel Library Filter", color = Color.White) },
+        text = {
+            LazyColumn {
+                items(libraries.size) { index ->
+                    val library = libraries[index]
+                    val id = library.id.toString()
+                    val isExcluded = id in excludedIds
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        androidx.compose.material3.Checkbox(
+                            checked = !isExcluded,
+                            onCheckedChange = { checked ->
+                                excludedIds = if (checked) excludedIds - id else excludedIds + id
+                            }
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = library.name ?: "Unknown",
+                            color = Color.White,
+                            fontSize = 14.sp
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                userPreferences[UserPreferences.carouselExcludedLibraries] = excludedIds.joinToString(",")
+                onDismiss()
+            }) {
+                Text("Save", color = Color.White)
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel", color = Color.White)
+            }
+        },
+        containerColor = Color(0xFF1E1E2E)
+    )
 }

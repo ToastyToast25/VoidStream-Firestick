@@ -16,6 +16,7 @@ import org.jellyfin.sdk.api.client.extensions.itemsApi
 import org.jellyfin.sdk.model.api.ItemFilter
 import org.jellyfin.sdk.model.api.SortOrder
 import org.jellyfin.sdk.model.api.request.GetItemsRequest
+import org.jellyfin.sdk.model.serializer.toUUIDOrNull
 import timber.log.Timber
 
 class CarouselViewModel(
@@ -68,9 +69,22 @@ class CarouselViewModel(
                     )
                 )
 
-                val items = response.content.items ?: emptyList()
+                val allItems = response.content.items ?: emptyList()
 
-                Timber.d("Processing ${items.size} items for carousel")
+                // Filter out items from excluded libraries
+                val excludedLibraries = userPreferences[UserPreferences.carouselExcludedLibraries]
+                    .split(",")
+                    .filter { it.isNotBlank() }
+                    .mapNotNull { it.trim().toUUIDOrNull() }
+                    .toSet()
+
+                val items = if (excludedLibraries.isNotEmpty()) {
+                    allItems.filter { item -> item.parentId !in excludedLibraries }
+                } else {
+                    allItems
+                }
+
+                Timber.d("Processing ${items.size} items for carousel (filtered from ${allItems.size}, excluded ${excludedLibraries.size} libraries)")
                 val carouselItems = items.mapNotNull { item ->
                     try {
                         // Debug logging to check overview field

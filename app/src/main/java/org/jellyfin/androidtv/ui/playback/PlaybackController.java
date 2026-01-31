@@ -1305,7 +1305,17 @@ public class PlaybackController implements PlaybackControllerNotifiable {
             videoQueueManager.getValue().setCurrentMediaPosition(mCurrentIndex);
             spinnerOff = false;
 
-            // Show "Next Up" fragment
+            // Track consecutive episodes for "still watching" feature
+            videoQueueManager.getValue().setConsecutiveEpisodesPlayed(
+                    videoQueueManager.getValue().getConsecutiveEpisodesPlayed() + 1);
+            int threshold = userPreferences.getValue().get(UserPreferences.Companion.getStillWatchingEpisodeThreshold());
+            if (threshold > 0 && videoQueueManager.getValue().getConsecutiveEpisodesPlayed() >= threshold) {
+                videoQueueManager.getValue().setStillWatchingPause(true);
+                videoQueueManager.getValue().resetConsecutiveCount();
+            }
+
+            // Show "Next Up" fragment - mark transition so intro segments auto-skip
+            videoQueueManager.getValue().setTransitioningFromNextUp(true);
             if (mFragment != null) mFragment.showNextUp(nextItem.getId());
             endPlayback();
         } else {

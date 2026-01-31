@@ -16,6 +16,7 @@ import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.client.extensions.liveTvApi
 import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.MediaSegmentDto
+import org.jellyfin.sdk.model.api.MediaSegmentType
 import org.jellyfin.sdk.model.api.MediaStreamType
 import org.jellyfin.sdk.model.api.SubtitleDeliveryMethod
 import org.koin.android.ext.android.inject
@@ -280,13 +281,27 @@ fun PlaybackController.applyMediaSegments(
 
 	fragment.clearSkipOverlay()
 
+	// When transitioning from next-up (binge watching), auto-skip intro segments
+	// to reduce the Skip Credits → Next Episode → Skip Intro prompt chain
+	val videoQueueManager by fragment.inject<VideoQueueManager>()
+	val isFromNextUp = videoQueueManager.isTransitioningFromNextUp
+	if (isFromNextUp) {
+		videoQueueManager.isTransitioningFromNextUp = false
+	}
+
 	fragment.lifecycleScope.launch {
 		val mediaSegments = runCatching {
 			mediaSegmentRepository.getSegmentsForItem(item)
 		}.getOrNull().orEmpty()
 
 		for (mediaSegment in mediaSegments) {
-			val action = mediaSegmentRepository.getMediaSegmentAction(mediaSegment)
+			var action = mediaSegmentRepository.getMediaSegmentAction(mediaSegment)
+
+			// Auto-skip intro when coming from next-up to avoid excessive prompts
+			if (isFromNextUp && action == MediaSegmentAction.ASK_TO_SKIP
+				&& mediaSegment.type == MediaSegmentType.INTRO) {
+				action = MediaSegmentAction.SKIP
+			}
 
 			when (action) {
 				MediaSegmentAction.SKIP -> addSkipAction(mediaSegment)
