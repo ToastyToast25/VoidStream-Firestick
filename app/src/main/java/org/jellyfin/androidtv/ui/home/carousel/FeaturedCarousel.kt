@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,7 +23,6 @@ import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
@@ -68,9 +66,9 @@ import androidx.tv.material3.ShapeDefaults
 import androidx.tv.material3.Text
 import kotlinx.coroutines.launch
 import org.jellyfin.androidtv.preference.UserPreferences
+import org.jellyfin.androidtv.ui.base.GlassSurface
+import org.jellyfin.androidtv.ui.base.JellyfinTheme
 import org.jellyfin.androidtv.ui.composable.AsyncImage
-import org.jellyfin.androidtv.ui.composable.modifier.getBackdropFadingColor
-import org.jellyfin.sdk.api.client.ApiClient
 import org.koin.compose.koinInject
 import kotlin.random.Random
 
@@ -188,7 +186,7 @@ fun FeaturedCarousel(
 	}
 
 	var isCarouselFocused by remember { mutableStateOf(false) }
-	val borderAlpha = if (isCarouselFocused) 1f else 0.1f
+	val borderAlpha = if (isCarouselFocused) 0.6f else 0.08f
 	var actualCarouselIndex by remember { mutableIntStateOf(activeIndex) }
 	val carouselState = remember { CarouselState() }
 
@@ -359,20 +357,18 @@ private fun BoxScope.CarouselIndicator(
 	activeItemIndex: Int,
 	modifier: Modifier = Modifier
 ) {
-	Box(
+	GlassSurface(
 		modifier = modifier
 			.padding(16.dp)
-			.background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
-			.graphicsLayer {
-				clip = true
-				shape = ShapeDefaults.ExtraSmall
-			}
-			.align(Alignment.BottomEnd)
+			.align(Alignment.BottomEnd),
+		cornerRadius = 8.dp,
+		borderWidth = 0.dp,
+		borderColor = Color.Transparent,
 	) {
 		CarouselDefaults.IndicatorRow(
 			modifier = Modifier
-				.align(Alignment.BottomEnd)
-				.padding(8.dp),
+				.align(Alignment.Center)
+				.padding(horizontal = 12.dp, vertical = 6.dp),
 			itemCount = itemCount,
 			activeItemIndex = activeItemIndex,
 		)
@@ -386,22 +382,32 @@ private fun CarouselItemForeground(
 	onItemSelected: () -> Unit,
 	modifier: Modifier = Modifier
 ) {
-	val api = koinInject<ApiClient>()
+	val colors = JellyfinTheme.colorScheme
+	val typography = JellyfinTheme.typography
+	val metadataStyle = typography.metadata.copy(
+		color = colors.textOnMedia,
+		shadow = Shadow(
+			color = Color.Black.copy(alpha = 0.5f),
+			offset = Offset(x = 1f, y = 2f),
+			blurRadius = 4f
+		)
+	)
 
 	Box(
 		modifier = modifier,
 		contentAlignment = Alignment.BottomStart
 	) {
+		// Logo or title at top
 		item.logoUrl?.let { logoUrl ->
 			Box(
 				modifier = Modifier
 					.align(Alignment.TopStart)
-					.padding(start = 24.dp, top = 16.dp)
+					.padding(start = 48.dp, top = 24.dp)
 			) {
 				AsyncImage(
 					modifier = Modifier
-						.height(98.dp)
-						.width(214.dp),
+						.height(110.dp)
+						.width(240.dp),
 					url = logoUrl
 				)
 			}
@@ -409,68 +415,54 @@ private fun CarouselItemForeground(
 			Box(
 				modifier = Modifier
 					.align(Alignment.TopStart)
-					.padding(start = 24.dp, top = 48.dp)
+					.padding(start = 48.dp, top = 48.dp)
 			) {
 				Text(
 					text = item.title,
-					style = MaterialTheme.typography.labelLarge.copy(
-						fontSize = 28.sp,
-						fontWeight = FontWeight.Bold,
-						lineHeight = 32.sp,
+					style = typography.hero.copy(
+						fontSize = 36.sp,
+						lineHeight = 40.sp,
 						shadow = Shadow(
 							color = Color.Black.copy(alpha = 0.7f),
 							offset = Offset(x = 2f, y = 4f),
-							blurRadius = 4f
+							blurRadius = 6f
 						)
 					),
 					maxLines = 2,
 					overflow = TextOverflow.Ellipsis,
-					color = Color.White,
-					modifier = Modifier.fillMaxWidth(0.465f)
-
+					color = colors.textPrimary,
+					modifier = Modifier.fillMaxWidth(0.5f)
 				)
 			}
 		}
 
+		// Metadata + description column
 		Column(
 			modifier = Modifier
 				.fillMaxSize()
-				.padding(start = 28.dp, top = 110.dp, bottom = 50.dp, end = 0.dp),
+				.padding(start = 48.dp, top = 130.dp, bottom = 56.dp, end = 0.dp),
 			verticalArrangement = Arrangement.Top,
 			horizontalAlignment = Alignment.Start
 		) {
-
 			val yearAndRuntime = listOfNotNull(
 				item.getYear().takeIf { it.isNotEmpty() },
 				item.getRuntime().takeIf { it.isNotEmpty() }
 			).joinToString("  •  ")
 
+			// Metadata row
 			Row(
 				modifier = Modifier.padding(top = 8.dp),
 				horizontalArrangement = Arrangement.spacedBy(1.dp),
 				verticalAlignment = Alignment.CenterVertically
 			) {
 				if (yearAndRuntime.isNotEmpty()) {
-					Text(
-						text = yearAndRuntime,
-						style = MaterialTheme.typography.titleMedium.copy(
-							fontSize = 16.sp,
-							color = Color.White.copy(alpha = 0.8f)
-						)
-					)
+					Text(text = yearAndRuntime, style = metadataStyle)
 				}
 
-				// Always show ratings by default, regardless of user preference
 				item.communityRating?.let { communityRating ->
 					if (communityRating > 0) {
 						if (yearAndRuntime.isNotEmpty()) {
-							Text(
-								text = " • ",
-								style = MaterialTheme.typography.titleMedium.copy(
-									fontSize = 16.sp,
-									color = Color.White.copy(alpha = 0.8f)
-								)
-							)
+							Text(text = " • ", style = metadataStyle)
 						}
 						Row(
 							horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -482,14 +474,7 @@ private fun CarouselItemForeground(
 								tint = Color.Unspecified,
 								modifier = Modifier.size(18.dp)
 							)
-							Spacer(Modifier.size(0.dp))
-							Text(
-								text = String.format("%.1f", communityRating),
-								style = MaterialTheme.typography.titleMedium.copy(
-									fontSize = 16.sp,
-									color = Color.White.copy(alpha = 0.8f)
-								)
-							)
+							Text(text = String.format("%.1f", communityRating), style = metadataStyle)
 						}
 					}
 				}
@@ -497,13 +482,7 @@ private fun CarouselItemForeground(
 				item.criticRating?.let { criticRating ->
 					if (criticRating > 0) {
 						if (yearAndRuntime.isNotEmpty() || (item.communityRating ?: 0f) > 0) {
-							Text(
-								text = " • ",
-								style = MaterialTheme.typography.titleMedium.copy(
-									fontSize = 16.sp,
-									color = Color.White.copy(alpha = 0.8f)
-								)
-							)
+							Text(text = " • ", style = metadataStyle)
 						}
 						Row(
 							horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -520,13 +499,9 @@ private fun CarouselItemForeground(
 								tint = Color.Unspecified,
 								modifier = Modifier.size(16.dp)
 							)
-							Spacer(Modifier.size(0.dp))
 							Text(
 								text = "${String.format("%.0f", criticRating)}%",
-								style = MaterialTheme.typography.titleMedium.copy(
-									fontSize = 16.sp,
-									color = Color.White.copy(alpha = 0.8f)
-								)
+								style = metadataStyle
 							)
 						}
 					}
@@ -535,54 +510,39 @@ private fun CarouselItemForeground(
 				item.parentalRating?.let { parentalRating ->
 					if (parentalRating.isNotBlank()) {
 						if (yearAndRuntime.isNotEmpty() || (item.communityRating ?: 0f) > 0 || (item.criticRating ?: 0f) > 0) {
-							Text(
-								text = " • ",
-								style = MaterialTheme.typography.titleMedium.copy(
-									fontSize = 16.sp,
-									color = Color.White.copy(alpha = 0.8f)
-								)
-							)
+							Text(text = " • ", style = metadataStyle)
 						}
-						Text(
-							text = parentalRating,
-							style = MaterialTheme.typography.titleMedium.copy(
-								fontSize = 16.sp,
-								color = Color.White.copy(alpha = 0.8f),
-								fontWeight = FontWeight.Normal
-							)
-						)
+						Text(text = parentalRating, style = metadataStyle)
 					}
 				}
 			}
 
+			// Description
 			if (item.description.isNotBlank()) {
 				Text(
 					text = item.description,
-					style = MaterialTheme.typography.titleMedium.copy(
-						fontSize = 14.sp,
-						color = Color.White.copy(alpha = 0.9f),
+					style = typography.bodyLarge.copy(
+						color = colors.textOnMedia,
 						shadow = Shadow(
-							color = Color.Black.copy(alpha = 0.7f),
-							offset = Offset(x = 2f, y = 4f),
+							color = Color.Black.copy(alpha = 0.5f),
+							offset = Offset(x = 1f, y = 2f),
 							blurRadius = 4f
 						)
 					),
-					maxLines = 2,
+					maxLines = 3,
 					overflow = TextOverflow.Ellipsis,
 					modifier = Modifier
-						.padding(top = 8.dp)
-						.fillMaxWidth(0.465f)
+						.padding(top = 10.dp)
+						.fillMaxWidth(0.5f)
 				)
-			} else {
-				// Debug logging for missing description
-				timber.log.Timber.w("No description available for item: ${item.title}")
 			}
 		}
 
+		// Watch Now button
 		Box(
 			modifier = Modifier
 				.align(Alignment.BottomStart)
-				.padding(start = 19.dp, bottom = 12.dp)
+				.padding(start = 48.dp, bottom = 16.dp)
 		) {
 			WatchNowButton(onItemSelected = onItemSelected)
 		}
@@ -592,38 +552,40 @@ private fun CarouselItemForeground(
 @Composable
 private fun CarouselItemBackground(item: CarouselItem, modifier: Modifier = Modifier) {
 	val imageUrl = item.backdropUrl ?: item.imageUrl
-
-	val backgroundService: org.jellyfin.androidtv.data.service.BackgroundService = koinInject()
-	val backdropFadingIntensity by backgroundService.backdropFadingIntensity.collectAsState()
-	val localContext = androidx.compose.ui.platform.LocalContext.current
-
-	val typedArray = localContext.theme.obtainStyledAttributes(
-		intArrayOf(org.jellyfin.androidtv.R.attr.backdrop_fading_color)
-	)
-	typedArray.recycle()
-
-	val fadingColor = getBackdropFadingColor()
+	val colors = JellyfinTheme.colorScheme
 
 	Box(modifier = modifier.fillMaxSize()) {
+		// Full-bleed backdrop image
 		AsyncImage(
-			modifier = androidx.compose.ui.Modifier
-				.width(600.dp)
-				.aspectRatio(16f / 10f)
-				.align(androidx.compose.ui.Alignment.TopEnd),
+			modifier = Modifier.fillMaxSize(),
 			url = imageUrl,
-			scaleType = android.widget.ImageView.ScaleType.FIT_END
+			scaleType = android.widget.ImageView.ScaleType.CENTER_CROP
 		)
 
-		//  This fading effect shit breaks if you change even a bit, keep the sweet spot as is
+		// Left gradient for text readability (black 40% → transparent)
 		Box(
-			modifier = androidx.compose.ui.Modifier
+			modifier = Modifier
 				.fillMaxSize()
 				.background(
 					brush = Brush.horizontalGradient(
-						0f to fadingColor,
-						0.42f to fadingColor,
-						0.49f to Color.Transparent,
+						0f to colors.background.copy(alpha = 0.95f),
+						0.35f to colors.background.copy(alpha = 0.7f),
+						0.55f to Color.Transparent,
 						1f to Color.Transparent
+					)
+				)
+		)
+
+		// Bottom scrim for indicator and button area
+		Box(
+			modifier = Modifier
+				.fillMaxSize()
+				.background(
+					brush = Brush.verticalGradient(
+						0f to Color.Transparent,
+						0.6f to Color.Transparent,
+						0.85f to colors.background.copy(alpha = 0.6f),
+						1f to colors.background.copy(alpha = 0.95f)
 					)
 				)
 		)
@@ -633,39 +595,46 @@ private fun CarouselItemBackground(item: CarouselItem, modifier: Modifier = Modi
 @Composable
 private fun WatchNowButton(onItemSelected: () -> Unit) {
 	val buttonFocusRequester = remember { FocusRequester() }
+	val typography = JellyfinTheme.typography
 
 	Button(
 		onClick = onItemSelected,
 		modifier = Modifier
-			.padding(top = 15.dp)
 			.focusRequester(buttonFocusRequester),
 		contentPadding = androidx.compose.foundation.layout.PaddingValues(
-			start = 0.9.dp,
-			end = 15.3.dp,
-			bottom = 0.dp
+			start = 16.dp,
+			end = 24.dp,
+			top = 10.dp,
+			bottom = 10.dp
 		),
-		shape = ButtonDefaults.shape(shape = RoundedCornerShape(14.dp)),
+		shape = ButtonDefaults.shape(shape = RoundedCornerShape(8.dp)),
 		colors = ButtonDefaults.colors(
-			containerColor = Color(0xFFFFFFFF).copy(alpha = 0.8f),
+			containerColor = Color.White,
 			contentColor = Color.Black,
-			focusedContentColor = Color.White.copy(alpha = 0.7f),
+			focusedContainerColor = Color.White.copy(alpha = 0.9f),
+			focusedContentColor = Color.Black,
 		),
-		scale = ButtonDefaults.scale(scale = 0.85f),
-		glow = ButtonDefaults.glow()
+		scale = ButtonDefaults.scale(scale = 1.0f, focusedScale = 1.05f),
+		glow = ButtonDefaults.glow(
+			glow = androidx.tv.material3.Glow(
+				elevationColor = Color.White.copy(alpha = 0.3f),
+				elevation = 8.dp
+			),
+			focusedGlow = androidx.tv.material3.Glow(
+				elevationColor = Color.White.copy(alpha = 0.5f),
+				elevation = 16.dp
+			)
+		)
 	) {
 		Icon(
 			imageVector = Icons.Outlined.PlayArrow,
 			contentDescription = null,
-			modifier = Modifier.size(22.5.dp)
-
+			modifier = Modifier.size(24.dp)
 		)
-		Spacer(Modifier.size(3.6.dp))
+		Spacer(Modifier.width(8.dp))
 		Text(
 			text = "Watch Now",
-			style = MaterialTheme.typography.titleMedium.copy(
-				fontSize = 13.8.sp,
-				fontWeight = FontWeight.Medium
-			)
+			style = typography.button.copy(fontSize = 16.sp)
 		)
 	}
 }

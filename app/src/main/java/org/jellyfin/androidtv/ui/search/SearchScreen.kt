@@ -68,6 +68,7 @@ import coil3.compose.AsyncImage
 import kotlinx.coroutines.delay
 import org.jellyfin.androidtv.R
 import org.jellyfin.androidtv.data.service.BackgroundService
+import org.jellyfin.androidtv.ui.base.JellyfinTheme
 import org.jellyfin.androidtv.ui.itemhandling.BaseItemDtoBaseRowItem
 import org.jellyfin.androidtv.ui.itemhandling.BaseRowItem
 import org.jellyfin.androidtv.util.ImageHelper
@@ -164,7 +165,7 @@ fun SearchScreen(
 		Row(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(horizontal = 20.dp),
+				.padding(horizontal = 48.dp),
 			horizontalArrangement = Arrangement.spacedBy(16.dp),
 			verticalAlignment = Alignment.CenterVertically
 		) {
@@ -341,13 +342,13 @@ private fun TVSearchFieldWithKeyboard(
 			)
 		},
 		colors = OutlinedTextFieldDefaults.colors(
-			focusedTextColor = Color.White,
-			unfocusedTextColor = Color.White,
-			cursorColor = Color.White,
-			focusedBorderColor = Color.White,
-			unfocusedBorderColor = Color.Gray.copy(alpha = 0.5f),
-			focusedContainerColor = Color.White.copy(alpha = 0.15f),
-			unfocusedContainerColor = Color.White.copy(alpha = 0.08f)
+			focusedTextColor = JellyfinTheme.colorScheme.textPrimary,
+			unfocusedTextColor = JellyfinTheme.colorScheme.textPrimary,
+			cursorColor = JellyfinTheme.colorScheme.textPrimary,
+			focusedBorderColor = JellyfinTheme.colorScheme.focusBorder,
+			unfocusedBorderColor = JellyfinTheme.colorScheme.focusBorderUnfocused,
+			focusedContainerColor = JellyfinTheme.colorScheme.glass,
+			unfocusedContainerColor = JellyfinTheme.colorScheme.focusSurface
 		),
 		keyboardOptions = KeyboardOptions(
 			imeAction = ImeAction.Search
@@ -377,12 +378,12 @@ private fun TVButton(
 		modifier = modifier
 			.size(50.dp)
 			.background(
-				color = if (isFocused) Color.White else Color.White.copy(alpha = 0.08f),
+				color = if (isFocused) JellyfinTheme.colorScheme.buttonFocused else JellyfinTheme.colorScheme.focusSurface,
 				shape = CircleShape
 			)
 			.border(
 				width = if (isFocused) 2.dp else 1.dp,
-				color = if (isFocused) Color.White else Color.Gray.copy(alpha = 0.5f),
+				color = if (isFocused) JellyfinTheme.colorScheme.focusBorder else JellyfinTheme.colorScheme.focusBorderUnfocused,
 				shape = CircleShape
 			)
 			.focusRequester(focusRequester)

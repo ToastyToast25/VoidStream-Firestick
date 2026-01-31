@@ -217,4 +217,23 @@
     <color name="flexy_nav_bar">#000000</color>             /* Black for navigation bar */
     <color name="flexy_background_filter">#000000</color> /* Semi-transparent background for filters */
     <color name="flexy_tile_bg">#000000</color>           /* Background for tiles */
+
+    <!-- Premium Design System -->
+    <color name="surface_primary">#000000</color>
+    <color name="surface_elevated">#0A0A0A</color>
+    <color name="surface_card">#1A1A1A</color>
+    <color name="glass_background">#1FFFFFFF</color>
+    <color name="glass_border">#33FFFFFF</color>
+    <color name="scrim_light">#1A000000</color>
+    <color name="scrim_medium">#80000000</color>
+    <color name="scrim_heavy">#D9000000</color>
+    <color name="focus_border">#FFFFFF</color>
+    <color name="focus_border_unfocused">#26FFFFFF</color>
+    <color name="focus_glow">#66FFFFFF</color>
+    <color name="focus_surface">#0FFFFFFF</color>
+    <color name="text_on_media">#E6FFFFFF</color>
+    <color name="text_tertiary">#80FFFFFF</color>
+    <color name="progress_played">#FFFFFF</color>
+    <color name="progress_buffered">#4DFFFFFF</color>
+    <color name="progress_remaining">#1AFFFFFF</color>
 </resources>

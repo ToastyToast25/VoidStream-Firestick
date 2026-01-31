@@ -88,7 +88,7 @@ android {
 			applicationId = "VoidStream.enhanced.tv"
 
 			// Set specific version name for enhanced variant
-			versionName = "0.1.2"
+			versionName = "0.2.0"
 
 			// Set app name for the enhanced version
 			resValue("string", "app_name_release", "VOIDSTREAM")

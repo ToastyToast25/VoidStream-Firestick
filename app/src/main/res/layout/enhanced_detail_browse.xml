@@ -5,15 +5,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Wrapper for logo/title to give them a consistent reference point -->
+    <!-- Wrapper for logo/title -->
     <FrameLayout
         android:id="@+id/logoTitleContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
         android:minHeight="75dp">
 
         <org.jellyfin.androidtv.ui.AsyncImageView
@@ -26,52 +26,55 @@
             android:visibility="gone" />
 
         <TextView
-            android:layout_width="430dp"
-            android:layout_height="55dp"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
             android:id="@+id/title"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:fontFamily="@font/bebas_neue"
-            android:letterSpacing="0.02"
-            android:maxLines="1"
+            android:letterSpacing="-0.01"
+            android:maxLines="2"
             android:text=""
             android:textAllCaps="true"
-            android:textColor="@color/basic_button_text"
-            android:textSize="31sp"
+            android:textColor="@color/text_primary"
+            android:textSize="34sp"
             android:textStyle="bold"
-            android:typeface="monospace"
             android:visibility="visible"
             android:focusableInTouchMode="false" />
     </FrameLayout>
 
+    <!-- Info row -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="20sp"
+        android:layout_height="22sp"
         android:layout_below="@+id/logoTitleContainer"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/infoRow" />
 
+    <!-- Summary text -->
     <org.jellyfin.androidtv.ui.shared.ShadowedTextView
         android:id="@+id/summary"
-        android:layout_width="500sp"
+        android:layout_width="520sp"
         android:layout_height="130sp"
         android:layout_below="@+id/infoRow"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="48dp"
         android:ellipsize="end"
-        android:textSize="16sp"
-        android:layout_marginTop="20sp"
+        android:textSize="15sp"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginTop="16sp"
         android:maxLines="4"
-        android:textColor="@android:color/white"
+        android:textColor="@color/text_on_media"
         android:justificationMode="inter_word"
         android:textAlignment="viewStart"
         android:gravity="fill_horizontal"
         android:paddingEnd="16dp"
         tools:ignore="RtlCompat" />
 
+    <!-- Rows fragment (episodes, similar, etc.) -->
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -81,15 +84,17 @@
         android:layout_marginStart="-25sp"
         android:layout_marginTop="-18dp"/>
 
+    <!-- Clock -->
     <org.jellyfin.androidtv.ui.ClockUserView
         android:id="@+id/fdClock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="false"
-        android:layout_marginEnd="46sp"
+        android:layout_marginEnd="48sp"
         android:layout_marginTop="27dp" />
 
+    <!-- Now playing indicator -->
     <org.jellyfin.androidtv.ui.NowPlayingWrapperView
         android:id="@+id/npBug"
         android:layout_width="wrap_content"

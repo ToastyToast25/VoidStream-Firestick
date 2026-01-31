@@ -42,14 +42,14 @@ private fun createStreamInfo(
 			static = true,
 			tag = source.eTag,
 		)
-	} else if (options.enableDirectStream && source.supportsDirectStream) {
+	} else if (options.enableDirectStream && source.supportsDirectStream && source.transcodingUrl != null) {
 		playMethod = PlayMethod.DIRECT_STREAM
 		container = source.transcodingContainer
-		mediaUrl = api.createUrl(requireNotNull(source.transcodingUrl), ignorePathParameters = true)
-	} else if (source.supportsTranscoding) {
+		mediaUrl = api.createUrl(source.transcodingUrl!!, ignorePathParameters = true)
+	} else if (source.supportsTranscoding && source.transcodingUrl != null) {
 		playMethod = PlayMethod.TRANSCODE
 		container = source.transcodingContainer
-		mediaUrl = api.createUrl(requireNotNull(source.transcodingUrl), ignorePathParameters = true)
+		mediaUrl = api.createUrl(source.transcodingUrl!!, ignorePathParameters = true)
 	}
 }
 
