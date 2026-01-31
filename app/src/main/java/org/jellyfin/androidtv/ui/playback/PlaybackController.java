@@ -163,6 +163,16 @@ public class PlaybackController implements PlaybackControllerNotifiable {
         }
     }
 
+    public long getSubtitleDelayMs() {
+        return hasInitializedVideoManager() ? mVideoManager.getSubtitleDelayMs() : 0;
+    }
+
+    public void setSubtitleDelayMs(long delayMs) {
+        if (hasInitializedVideoManager()) {
+            mVideoManager.setSubtitleDelayMs(delayMs);
+        }
+    }
+
     public BaseItemDto getCurrentlyPlayingItem() {
         return mItems.size() > mCurrentIndex ? mItems.get(mCurrentIndex) : null;
     }

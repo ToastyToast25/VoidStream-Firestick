@@ -83,6 +83,8 @@ public class VideoManager {
     private long mMetaDuration = -1;
     private long lastExoPlayerPosition = -1;
     private boolean nightModeEnabled;
+    private long mSubtitleDelayMs = 0;
+    private final Handler mSubtitleHandler = new Handler();
 
     public boolean isContracted = false;
 
@@ -129,6 +131,8 @@ public class VideoManager {
                 strokeColor,
                 TypefaceCompat.create(mActivity, Typeface.DEFAULT, textWeight, false)
         );
+        mExoPlayerView.getSubtitleView().setApplyEmbeddedStyles(false);
+        mExoPlayerView.getSubtitleView().setApplyEmbeddedFontSizes(false);
         mExoPlayerView.getSubtitleView().setFractionalTextSize(0.0533f * userPreferences.get(UserPreferences.Companion.getSubtitlesTextSize()));
         mExoPlayerView.getSubtitleView().setStyle(subtitleStyle);
 
@@ -193,8 +197,35 @@ public class VideoManager {
             public void onTracksChanged(Tracks tracks) {
                 Timber.d("Tracks changed");
             }
+
+            @Override
+            public void onCues(@NonNull androidx.media3.common.text.CueGroup cueGroup) {
+                if (mSubtitleDelayMs != 0) {
+                    // Clear the auto-rendered subtitles immediately
+                    mExoPlayerView.getSubtitleView().setCues(java.util.Collections.emptyList());
+                    // Post them with the configured delay
+                    mSubtitleHandler.removeCallbacksAndMessages(null);
+                    long delay = Math.max(0, mSubtitleDelayMs);
+                    mSubtitleHandler.postDelayed(() -> {
+                        mExoPlayerView.getSubtitleView().setCues(cueGroup.cues);
+                    }, delay);
+                }
+                // When delay is 0, let PlayerView handle subtitles normally
+            }
         });
     }
+
+    public long getSubtitleDelayMs() {
+        return mSubtitleDelayMs;
+    }
+
+    public void setSubtitleDelayMs(long delayMs) {
+        mSubtitleDelayMs = delayMs;
+        if (delayMs == 0) {
+            mSubtitleHandler.removeCallbacksAndMessages(null);
+        }
+    }
+
     public void subscribe(@NonNull PlaybackControllerNotifiable notifier) {
         mPlaybackControllerNotifiable = notifier;
     }

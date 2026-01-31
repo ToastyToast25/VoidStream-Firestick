@@ -43,6 +43,7 @@ import org.jellyfin.androidtv.ui.playback.overlay.action.SelectAudioAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.SelectQualityAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.SkipNextAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.SkipPreviousAction;
+import org.jellyfin.androidtv.ui.playback.overlay.action.SubtitleDelayAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.ZoomAction;
 import org.jellyfin.androidtv.ui.playback.overlay.action.StatsAction;
 import org.jellyfin.androidtv.util.DateTimeExtensionsKt;
@@ -68,6 +69,7 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
     private StatsAction statsAction;
     private ChapterAction chapterAction;
     private EpisodesAction episodesAction;
+    private SubtitleDelayAction subtitleDelayAction;
 
     // TV actions
     private PreviousLiveTvChannelAction previousLiveTvChannelAction;
@@ -229,6 +231,8 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
         chapterAction.setLabels(new String[]{context.getString(R.string.lbl_chapters)});
         episodesAction = new EpisodesAction(context, this);
         episodesAction.setLabels(new String[]{context.getString(R.string.lbl_episodes)});
+        subtitleDelayAction = new SubtitleDelayAction(context, this);
+        subtitleDelayAction.setLabels(new String[]{context.getString(R.string.lbl_subtitle_delay)});
 
         previousLiveTvChannelAction = new PreviousLiveTvChannelAction(context, this);
         previousLiveTvChannelAction.setLabels(new String[]{context.getString(R.string.lbl_prev_item)});
@@ -307,6 +311,9 @@ public class CustomPlaybackTransportControlGlue extends PlaybackTransportControl
         }
 
         if (!playerAdapter.isLiveTv()) {
+            if (playerAdapter.hasSubs()) {
+                secondaryActionsAdapter.add(subtitleDelayAction);
+            }
             secondaryActionsAdapter.add(playbackSpeedAction);
             secondaryActionsAdapter.add(selectQualityAction);
             secondaryActionsAdapter.add(zoomAction);
