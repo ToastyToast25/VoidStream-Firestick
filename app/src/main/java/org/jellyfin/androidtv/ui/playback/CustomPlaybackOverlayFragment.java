@@ -1144,11 +1144,11 @@ public class CustomPlaybackOverlayFragment extends Fragment implements LiveTvGui
     private Animation.AnimationListener showAnimationListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
+            binding.topPanel.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            binding.topPanel.setVisibility(View.VISIBLE);
         }
 
         @Override

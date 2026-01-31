@@ -48,7 +48,7 @@ import org.jellyfin.androidtv.util.UpdateResult
 import org.koin.java.KoinJavaComponent
 import timber.log.Timber
 
-private const val CURRENT_VERSION = "0.1.2"
+private val CURRENT_VERSION = org.jellyfin.androidtv.BuildConfig.VERSION_NAME
 
 private fun checkForUpdates(context: Context) {
     val appUpdater = AppUpdater(context)
