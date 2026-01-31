@@ -25,6 +25,7 @@
             android:textAlignment="viewEnd"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:letterSpacing="0.04"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="VisualLintBounds,TextSizeCheck" />
@@ -69,7 +70,7 @@
         android:maxLines="1"
         android:text=""
         android:textAllCaps="true"
-        android:textColor="@color/basic_button_text"
+        android:textColor="#E6FFFFFF"
         android:textSize="31sp"
         android:textStyle="bold"
         android:typeface="monospace"

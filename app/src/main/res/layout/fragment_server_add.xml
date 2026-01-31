@@ -4,91 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTintMode="screen"
     tools:context=".ui.startup.StartupActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <!-- Centered card -->
+    <LinearLayout
+        android:id="@+id/add_server_card"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_card_background"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:paddingHorizontal="36dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42">
 
-    <!-- Server Address  -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.04"
+            android:text="@string/lbl_enter_server_address"
+            android:textColor="#F0FFFFFF"
+            android:textSize="28sp" />
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/TextAppearance.Leanback.Title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="48dp"
-        android:text="@string/lbl_enter_server_address"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/address_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.04"
+            android:text="@string/lbl_valid_server_address"
+            android:textColor="#B3FFFFFF"
+            android:textSize="13sp" />
 
-    <!-- Title  -->
+        <EditText
+            android:id="@+id/address"
+            style="@style/Input.Modern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:imeOptions="actionDone"
+            android:inputType="textUri"
+            android:nextFocusDown="@id/confirm"
+            android:nextFocusForward="@id/confirm"
+            android:privateImeOptions="horizontalAlignment=right" />
 
-    <TextView
-        android:id="@+id/address_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:text="@string/lbl_valid_server_address"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        <Button
+            android:id="@+id/confirm"
+            style="@style/Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/action_connect" />
 
-    <!-- Address  -->
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="#80FFFFFF"
+            android:textSize="13sp"
+            tools:text="@string/server_connecting" />
 
-    <EditText
-        android:id="@+id/address"
-        style="@style/Input.BlackWithWhiteBorder"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="48dp"
-        android:imeOptions="actionDone"
-        android:inputType="textUri"
-        android:nextFocusDown="@id/confirm"
-        android:nextFocusForward="@id/confirm"
-        android:privateImeOptions="horizontalAlignment=right"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/address_label" />
+    </LinearLayout>
 
-
-    <!-- Buttons and error   -->
-
-    <Button
-        android:id="@+id/confirm"
-        style="@style/Button.Default"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/action_connect"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/address" />
-
-    <TextView
-        android:id="@+id/error"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirm"
-        tools:text="@string/server_connecting" />
 </androidx.constraintlayout.widget.ConstraintLayout>

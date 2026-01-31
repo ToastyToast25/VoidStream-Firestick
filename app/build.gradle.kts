@@ -88,7 +88,7 @@ android {
 			applicationId = "VoidStream.enhanced.tv"
 
 			// Set specific version name for enhanced variant
-			versionName = "0.2.2"
+			versionName = "0.2.3"
 
 			// Set app name for the enhanced version
 			resValue("string", "app_name_release", "VOIDSTREAM")
@@ -130,9 +130,9 @@ tasks.register("buildEnhanced") {
 	doLast {
 		println("\nBuilding Enhanced version with:")
 		println("Package ID: VoidStream.enhanced.tv")
-		println("Version: 0.2.2")
+		println("Version: 0.2.3")
 		println("App Name: VOIDSTREAM")
-		println("Filename: VoidStream.androidtv-0.2.2.apk")
+		println("Filename: VoidStream.androidtv-0.2.3.apk")
 		println("The APK will be available in: app/build/outputs/apk/enhanced/release/")
 	}
 }

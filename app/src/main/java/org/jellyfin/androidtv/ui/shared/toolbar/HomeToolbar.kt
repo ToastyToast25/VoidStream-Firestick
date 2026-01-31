@@ -32,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.border
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -91,6 +92,9 @@ fun HomeToolbar(
             modifier = Modifier
                 .offset(x = 48.dp)
                 .padding(top = 14.dp)
+                .background(Color(0x1AFFFFFF), RoundedCornerShape(12.dp))
+                .border(0.5.dp, Color(0x33FFFFFF), RoundedCornerShape(12.dp))
+                .padding(horizontal = 6.dp, vertical = 4.dp)
                 .wrapContentWidth(Alignment.Start),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically

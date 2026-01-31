@@ -13,9 +13,11 @@
     </style>
 
     <style name="Widget.Jellyfin.Row.Header" parent="Widget.Leanback.Row.Header">
-        <item name="android:textColor">@color/text_primary</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginBottom">-4dp</item>
+        <item name="android:textColor">#B3FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:layout_marginBottom">0dp</item>
     </style>
     <style name="Text.Secondary">
         <item name="android:textColor">@color/text_secondary</item>
@@ -106,6 +108,36 @@
         <item name="android:background">@drawable/input_black_white_border</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorHint">@android:color/darker_gray</item>
+    </style>
+
+    <style name="Input.Modern" parent="Input.Default">
+        <item name="android:background">@drawable/input_modern</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">#80FFFFFF</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Button.Primary" parent="Button.Default">
+        <item name="android:background">@drawable/button_primary_back</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+    </style>
+
+    <style name="Button.Outlined" parent="Button.Default">
+        <item name="android:background">@drawable/button_outlined_back</item>
+        <item name="android:textColor">#CCFFFFFF</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
     </style>
 
     <!-- Preference Category Style -->

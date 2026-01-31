@@ -584,8 +584,8 @@ private fun CarouselItemBackground(item: CarouselItem, modifier: Modifier = Modi
 					brush = Brush.verticalGradient(
 						0f to Color.Transparent,
 						0.6f to Color.Transparent,
-						0.85f to colors.background.copy(alpha = 0.6f),
-						1f to colors.background.copy(alpha = 0.95f)
+						0.85f to colors.background.copy(alpha = 0.5f),
+						1f to colors.background.copy(alpha = 0.85f)
 					)
 				)
 		)
@@ -609,19 +609,19 @@ private fun WatchNowButton(onItemSelected: () -> Unit) {
 		),
 		shape = ButtonDefaults.shape(shape = RoundedCornerShape(8.dp)),
 		colors = ButtonDefaults.colors(
-			containerColor = Color.White,
-			contentColor = Color.Black,
-			focusedContainerColor = Color.White.copy(alpha = 0.9f),
-			focusedContentColor = Color.Black,
+			containerColor = Color(0xFFAA5CC3),
+			contentColor = Color.White,
+			focusedContainerColor = Color(0xFFCC5CC3),
+			focusedContentColor = Color.White,
 		),
-		scale = ButtonDefaults.scale(scale = 1.0f, focusedScale = 1.05f),
+		scale = ButtonDefaults.scale(scale = 1.0f, focusedScale = 1.03f),
 		glow = ButtonDefaults.glow(
 			glow = androidx.tv.material3.Glow(
-				elevationColor = Color.White.copy(alpha = 0.3f),
+				elevationColor = Color(0x4DAA5CC3),
 				elevation = 8.dp
 			),
 			focusedGlow = androidx.tv.material3.Glow(
-				elevationColor = Color.White.copy(alpha = 0.5f),
+				elevationColor = Color(0x80AA5CC3),
 				elevation = 16.dp
 			)
 		)

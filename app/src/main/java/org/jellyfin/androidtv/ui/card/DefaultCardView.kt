@@ -36,10 +36,10 @@ class DefaultCardView @JvmOverloads constructor(
 		val drawable = GradientDrawable()
 		drawable.shape = GradientDrawable.RECTANGLE
 		drawable.setStroke(
-			8, // width in pixels
-			Color.RED // color
+			4, // width in pixels
+			Color.parseColor("#AA5CC3") // accent color
 		)
-		drawable.cornerRadius = 16f // radius in pixels
+		drawable.cornerRadius = 24f // radius in pixels
 		background = drawable
 		bringToFront()
 		visibility = View.INVISIBLE
@@ -118,7 +118,7 @@ class DefaultCardView @JvmOverloads constructor(
 		return false
 	}
 
-	private var currentScale: Float = 0.95f
+	private var currentScale: Float = 0.97f
 	private var isFocused: Boolean = false
 
 	private fun updateWhiteBorder(hasFocus: Boolean) {
@@ -149,7 +149,7 @@ class DefaultCardView @JvmOverloads constructor(
 		animate().cancel()
 
 		// Update scale
-		val targetScale = if (gainFocus) 1.0f else 0.95f
+		val targetScale = if (gainFocus) 1.0f else 0.97f
 		if (currentScale != targetScale) {
 			currentScale = targetScale
 			scaleX = targetScale

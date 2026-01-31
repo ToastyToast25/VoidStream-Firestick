@@ -63,19 +63,20 @@ import org.jellyfin.preference.Preference
 import org.jellyfin.preference.store.PreferenceStore
 
 object Colors {
-	val Background = Color(0xFF1F1F1F)
-	val Surface = Color(0x25737373)
-	val SurfaceVariant = Color(0x076000FF)
-	val Primary = Color(0xFF5000C7)
-	val PrimaryVariant = Color(0xBC6000FF)
-	val OnSurface = Color(0xFFE5E5E5)
-	val OnSurfaceVariant = Color(0xFFFFFFFF)
-	val Divider = Color(0xDF3D3D3D)
-	val FocusedOverlay = Color(0x19FFFFFF)
-	val FocusedBorder = Color(0xFFFFFFFF)
-	val DisabledContent = Color(0xFF666666)
-	val ScrimBackground = Color(0x00000000)
-	val PanelBackground = Color(0xFF171616)
+	val Background = Color(0xFF141414)
+	val Surface = Color(0x1AFFFFFF)
+	val SurfaceVariant = Color(0x12AA5CC3)
+	val Primary = Color(0xFFAA5CC3)
+	val PrimaryVariant = Color(0xFFCC5CC3)
+	val OnSurface = Color(0xFFE6E6E6)
+	val OnSurfaceVariant = Color(0xB3FFFFFF)
+	val Divider = Color(0x33FFFFFF)
+	val FocusedOverlay = Color(0x1AFFFFFF)
+	val FocusedBorder = Color(0xB3FFFFFF)
+	val DisabledContent = Color(0xFF555555)
+	val ScrimBackground = Color(0x40000000)
+	val PanelBackground = Color(0xFF161616)
+	val PanelBorder = Color(0x33FFFFFF)
 }
 
 @Composable
@@ -90,10 +91,15 @@ fun PreferencesRoot(content: @Composable () -> Unit) {
 			modifier = Modifier
 				.padding(end = 16.dp)
 				.width(420.dp)
-				.height(520.dp),
-			shape = RoundedCornerShape(12.dp),
-			tonalElevation = 2.dp,
-			shadowElevation = 16.dp,
+				.height(520.dp)
+				.border(
+					width = 1.dp,
+					color = Colors.PanelBorder,
+					shape = RoundedCornerShape(16.dp)
+				),
+			shape = RoundedCornerShape(16.dp),
+			tonalElevation = 0.dp,
+			shadowElevation = 24.dp,
 			color = Colors.PanelBackground
 		) {
 			content()
@@ -116,7 +122,7 @@ private fun PreferenceContainer(
 	Row(
 		modifier = modifier
 			.fillMaxWidth()
-			.clip(RoundedCornerShape(6.dp))
+			.clip(RoundedCornerShape(8.dp))
 			.then(
 				if (onClick != null) {
 					Modifier
@@ -132,19 +138,19 @@ private fun PreferenceContainer(
 				}
 			)
 			.border(
-				width = if (isFocused && enabled) 1.5.dp else 0.dp,
+				width = if (isFocused && enabled) 1.dp else 0.dp,
 				color = if (isFocused && enabled) Colors.FocusedBorder else Color.Transparent,
-				shape = RoundedCornerShape(6.dp)
+				shape = RoundedCornerShape(8.dp)
 			)
 			.background(
 				when {
 					isFocused && enabled -> Colors.FocusedOverlay
-					!enabled -> Colors.Surface.copy(alpha = 0.5f)
-					else -> Colors.Surface
+					!enabled -> Colors.Surface.copy(alpha = 0.3f)
+					else -> Color.Transparent
 				},
-				RoundedCornerShape(6.dp)
+				RoundedCornerShape(8.dp)
 			)
-			.padding(horizontal = 12.dp, vertical = 8.dp),
+			.padding(horizontal = 14.dp, vertical = 10.dp),
 		verticalAlignment = Alignment.CenterVertically
 	) {
 		content()
@@ -379,10 +385,10 @@ fun PreferenceHeader(
 			.padding(horizontal = 16.dp, vertical = 14.dp)
 			.padding(top = 8.dp),
 		style = MaterialTheme.typography.titleMedium,
-		fontSize = 20.sp,
-		fontWeight = FontWeight.ExtraBold,
-		letterSpacing = 1.2.sp,
-		color = Colors.OnSurface
+		fontSize = 18.sp,
+		fontWeight = FontWeight.Light,
+		letterSpacing = 2.sp,
+		color = Colors.OnSurfaceVariant
 	)
 }
 
@@ -391,8 +397,8 @@ fun PreferenceDivider(modifier: Modifier = Modifier) {
 	Spacer(
 		modifier = modifier
 			.fillMaxWidth()
-			.height(1.dp)
-			.padding(horizontal = 16.dp)
+			.height(0.5.dp)
+			.padding(horizontal = 20.dp)
 			.background(Colors.Divider)
 	)
 }
@@ -558,17 +564,19 @@ private fun <T> SelectionDialog(
 		onDismissRequest = onDismiss,
 		modifier = Modifier
 			.width(380.dp)
-			.height(440.dp),
+			.height(440.dp)
+			.border(1.dp, Colors.PanelBorder, RoundedCornerShape(16.dp)),
 		title = {
 			Text(
 				text = title,
 				color = Colors.OnSurface,
 				fontSize = 16.sp,
-				fontWeight = FontWeight.SemiBold
+				fontWeight = FontWeight.Light,
+				letterSpacing = 1.sp
 			)
 		},
 		containerColor = Colors.PanelBackground,
-		shape = RoundedCornerShape(10.dp),
+		shape = RoundedCornerShape(16.dp),
 		text = {
 			Column(
 				modifier = Modifier
@@ -733,7 +741,7 @@ fun PreferenceCard(
 	Column(
 		modifier = modifier
 			.fillMaxWidth()
-			.clip(RoundedCornerShape(8.dp))
+			.clip(RoundedCornerShape(12.dp))
 			.focusable(interactionSource = interactionSource, enabled = enabled)
 			.onKeyEvent { keyEvent ->
 				if (enabled && (keyEvent.key == Key.DirectionCenter || keyEvent.key == Key.Enter) &&
@@ -750,9 +758,9 @@ fun PreferenceCard(
 				enabled = enabled
 			) { if (enabled) onClick() }
 			.border(
-				width = if (isFocused && enabled) 1.5.dp else 0.dp,
-				color = if (isFocused && enabled) Colors.FocusedBorder else Color.Transparent,
-				shape = RoundedCornerShape(8.dp)
+				width = if (isFocused && enabled) 1.dp else 1.dp,
+				color = if (isFocused && enabled) Colors.FocusedBorder else Colors.PanelBorder,
+				shape = RoundedCornerShape(12.dp)
 			)
 			.background(
 				brush = if (isFocused && enabled) {
@@ -766,13 +774,13 @@ fun PreferenceCard(
 					Brush.verticalGradient(
 						colors = listOf(
 							Colors.Surface,
-							Colors.Surface
+							Color.Transparent
 						)
 					)
 				},
-				shape = RoundedCornerShape(8.dp)
+				shape = RoundedCornerShape(12.dp)
 			)
-			.padding(12.dp),
+			.padding(14.dp),
 		verticalArrangement = Arrangement.spacedBy(6.dp)
 	) {
 		Row(
@@ -874,15 +882,18 @@ fun ButtonRemapPreference(
 				showDialog.value = false
 				currentKeyCode.value = value
 			},
+			modifier = Modifier.border(1.dp, Colors.PanelBorder, RoundedCornerShape(16.dp)),
 			title = {
 				Text(
 					text = title,
 					color = Colors.OnSurface,
 					fontSize = 16.sp,
-					fontWeight = FontWeight.SemiBold
+					fontWeight = FontWeight.Light,
+					letterSpacing = 1.sp
 				)
 			},
 			containerColor = Colors.PanelBackground,
+			shape = RoundedCornerShape(16.dp),
 			text = {
 				Column(
 					modifier = Modifier.fillMaxWidth(),

@@ -6,9 +6,11 @@
     android:clickable="false"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/login_card_background"
     android:duplicateParentState="true"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="8dp">
+    android:paddingVertical="12dp"
+    android:layout_marginBottom="6dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon_default"
@@ -34,12 +36,13 @@
 
     <TextView
         android:id="@+id/server_name"
-        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:duplicateParentState="true"
-        android:textColor="@drawable/button_default_text"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#E6FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/icon_default"
@@ -48,22 +51,24 @@
 
     <TextView
         android:id="@+id/server_address"
-        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:duplicateParentState="true"
-        android:textColor="@drawable/button_default_text"
+        android:textColor="#80FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/server_name"
         app:layout_constraintTop_toBottomOf="@id/server_name"
         tools:text="http://192.168.1.1:8096" />
 
     <TextView
         android:id="@+id/server_version"
-        style="@style/TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:duplicateParentState="true"
-        android:textColor="@drawable/button_default_text"
+        android:textColor="#60FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/server_address"

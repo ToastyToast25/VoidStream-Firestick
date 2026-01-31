@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:duplicateParentState="true"
-                app:cardCornerRadius="1.0dp"
+                app:cardCornerRadius="8dp"
                 app:cardElevation="1dp"
                 app:cardMaxElevation="5dp"
                 app:cardBackgroundColor="@android:color/transparent"
@@ -70,7 +70,7 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="11sp"
+        android:textColor="#B3FFFFFF"
+        android:textSize="12sp"
         tools:text="Username" />
 </LinearLayout>

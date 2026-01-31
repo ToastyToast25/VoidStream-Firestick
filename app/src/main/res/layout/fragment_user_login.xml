@@ -6,105 +6,97 @@
     android:layout_height="match_parent"
     tools:context=".ui.startup.StartupActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/center"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <!-- Centered login card -->
+    <LinearLayout
+        android:id="@+id/login_card"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_card_background"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:paddingHorizontal="36dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.04"
+            android:text="@string/lbl_sign_in"
+            android:textColor="#F0FFFFFF"
+            android:textSize="28sp" />
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/TextAppearance.Leanback.Title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="48dp"
-        android:text="@string/lbl_sign_in"
-        android:textAppearance="@style/Text.StrokedWhite"
-        android:textColor="@color/text_primary"
-        android:textSize="36sp"
-        android:letterSpacing="-0.01"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="#80FFFFFF"
+            android:textSize="14sp"
+            tools:text="@string/login_connect_to" />
 
-    <TextView
-        android:id="@+id/subtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="48dp"
-        android:textAppearance="@style/Text.StrokedWhite"
-        android:textColor="@color/text_on_media"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        tools:text="@string/login_connect_to" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/login_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            tools:name="org.jellyfin.androidtv.ui.startup.fragment.UserLoginCredentialsFragment" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/login_method"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/actions"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitle"
-        tools:name="org.jellyfin.androidtv.ui.startup.fragment.UserLoginCredentialsFragment" />
+    </LinearLayout>
 
+    <!-- Action buttons below the card -->
     <LinearLayout
         android:id="@+id/actions"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="27dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_card">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_other_options" />
+            android:text="@string/login_other_options"
+            android:textColor="#60FFFFFF"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/use_credentials"
-            style="@style/Button.Default"
+            style="@style/Button.Outlined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/action_use_password"
+            android:textSize="13sp"
             tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/use_quickconnect"
-            style="@style/Button.Default"
+            style="@style/Button.Outlined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/action_use_quickconnect"
+            android:textSize="13sp"
             tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/cancel"
-            style="@style/Button.Default"
+            style="@style/Button.Outlined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/btn_cancel"
+            android:textSize="13sp"
             tools:ignore="ButtonOrder,TouchTargetSizeCheck" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

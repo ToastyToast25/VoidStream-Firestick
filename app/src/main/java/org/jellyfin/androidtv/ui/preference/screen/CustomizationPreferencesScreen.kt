@@ -72,6 +72,7 @@ fun CustomizationPreferencesScreenCompose(
     val firstItemFocusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(150)
         firstItemFocusRequester.requestFocus()
     }
 
