@@ -1,22 +1,22 @@
 <p align="center">
-  <img src="https://files.catbox.moe/jqk9rl.jpg" alt="DUNE" width="100%">
+  <img src="https://files.catbox.moe/jqk9rl.jpg" alt="VOIDSTREAM" width="100%">
 </p>
 
-# DUNE - Jellyfin Android TV Client
+# VOIDSTREAM - Jellyfin Android TV Client
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue?labelColor=555555&style=for-the-badge)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-[![Latest Release](https://img.shields.io/github/v/release/Sam42a/DUNE?label=Latest%20Release&labelColor=555555&style=for-the-badge)](https://github.com/Sam42a/DUNE/releases/latest)
-[![GitHub Stars](https://img.shields.io/github/stars/Sam42a/DUNE?label=Stars&labelColor=555555&style=for-the-badge)](https://github.com/Sam42a/DUNE/stargazers)
+[![Latest Release](https://img.shields.io/github/v/release/ToastyToast25/VoidStream-Firestick?label=Latest%20Release&labelColor=555555&style=for-the-badge)](https://github.com/ToastyToast25/VoidStream-Firestick/releases/latest)
+[![GitHub Stars](https://img.shields.io/github/stars/ToastyToast25/VoidStream-Firestick?label=Stars&labelColor=555555&style=for-the-badge)](https://github.com/ToastyToast25/VoidStream-Firestick/stargazers)
 [![Support Me](https://img.shields.io/badge/Support_Me-Buy_a_Coffee-orange?labelColor=555555&style=for-the-badge)](https://coff.ee/sam42)
 
 <p align="center">
   <br>
-  <img src="https://i.imgur.com/4Oe1APd.jpeg" alt="DUNE Screenshot" width="100%">
+  <img src="https://i.imgur.com/4Oe1APd.jpeg" alt="VOIDSTREAM Screenshot" width="100%">
 </p>
 
 ## About
 
-**DUNE** is a modified version of the official [Jellyfin](https://jellyfin.org/) Android TV client with enhanced UI/UX and additional customization options.
+**VOIDSTREAM** is a modified version of the official [Jellyfin](https://jellyfin.org/) Android TV client with enhanced UI/UX and additional customization options.
 
 > **Note**: This is an unofficial fork not affiliated with the Jellyfin project. The official Jellyfin Android TV client can be found at [jellyfin/jellyfin-androidtv](https://github.com/jellyfin/jellyfin-androidtv).
 
@@ -62,8 +62,8 @@ This project uses the same translation system as the original Jellyfin Android T
 ### Build Instructions
 ```bash
 # Clone repository
-git clone https://github.com/Sam42a/DUNE.git
-cd DUNE-main
+git clone https://github.com/ToastyToast25/VoidStream-Firestick.git
+cd VOIDSTREAM-main
 
 # Build standard version
 ./gradlew assembleStandardRelease
@@ -81,7 +81,7 @@ cd DUNE-main
 ./gradlew installEnhancedRelease
 ```
 
-**Note:** The enhanced version uses package ID `Dune.enhanced.tv` which allows it to be installed alongside the original Jellyfin app.
+**Note:** The enhanced version uses package ID `VoidStream.enhanced.tv` which allows it to be installed alongside the original Jellyfin app.
 
 ## Third-Party Libraries
 

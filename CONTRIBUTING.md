@@ -1,6 +1,6 @@
-# Contributing to Dune (Jellyfin Android TV Client)
+# Contributing to VoidStream (Jellyfin Android TV Client)
 
-Thank you for considering contributing to Dune! We welcome all contributions that help improve this project.
+Thank you for considering contributing to VoidStream! We welcome all contributions that help improve this project.
 
 ## Code of Conduct
 
@@ -11,7 +11,7 @@ This project adheres to the [Jellyfin Code of Conduct](https://github.com/jellyf
 1. **Fork** the repository on GitHub
 2. **Clone** your fork locally
    ```
-   git clone https://github.com/your-username/DUNE.git
+   git clone https://github.com/your-username/VoidStream.git
    ```
 3. Create a new **feature branch** for your changes
    ```

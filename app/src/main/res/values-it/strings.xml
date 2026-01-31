@@ -665,7 +665,7 @@
     <string name="pref_subtitles_vertical_offset_center">Centra</string>
     <string name="media_image">Immagine multimediale</string>
     <string name="profile_picture">Immagine del profilo</string>
-    <string name="app_name">DUNE</string>
+    <string name="app_name">VOIDSTREAM</string>
     <string name="error_occurred">Si è verificato un errore. Riprova.</string>
     <string name="no_results_found">Nessun risultato trovato</string>
     <string name="pref_theme_basic">Basic (Dark Low-End)</string>
@@ -698,7 +698,7 @@
     <string name="show_family_row">Mostra riga Famiglia</string>
     <string name="show_horror_row">Mostra riga Horror</string>
     <string name="show_fantasy_row">Mostra riga Fantasy</string>
-    <string name="exit_app_title">Uscita DUNE</string>
+    <string name="exit_app_title">Uscita VOIDSTREAM</string>
     <string name="exit_app_message">Sei sicuro di voler uscire?</string>
     <string name="yes">Sì</string>
     <string name="no">No</string>

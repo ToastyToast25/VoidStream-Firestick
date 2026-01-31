@@ -303,7 +303,7 @@
     <string name="lbl_sign_out_content">Demande une connexion à la prochaine utilisation</string>
     <string name="lbl_hide_unwatched_count">Quand l\'élément est visionné</string>
     <string name="pref_watched_indicator">Afficher les indicateurs de visionnage</string>
-    <string name="login_help_description">DUNE a besoin d\'un serveur auquel se connecter. Visitez notre documentation docs.jellyfin.org ou scannez le QR code pour commencer à utiliser Jellyfin.</string>
+    <string name="login_help_description">VOIDSTREAM a besoin d\'un serveur auquel se connecter. Visitez notre documentation docs.jellyfin.org ou scannez le QR code pour commencer à utiliser Jellyfin.</string>
     <string name="login_help_title">Besoin d\'aide \?</string>
     <string name="connect_manually_by_address">Entrez l\'adresse du serveur</string>
     <string name="discovered_servers_empty">Aucun serveur n\'a été trouvé sur le réseau local.</string>
@@ -331,7 +331,7 @@
     <string name="user_picker_last_user_title">Plus récent</string>
     <string name="auto_sign_in">Connexion automatique</string>
     <string name="lbl_switch_user">Changer de compte</string>
-    <string name="no_network_permissions">DUNE a besoin des permissions réseau pour fonctionner</string>
+    <string name="no_network_permissions">VOIDSTREAM a besoin des permissions réseau pour fonctionner</string>
     <string name="pref_theme_muted_purple">Violet atténué</string>
     <string name="lbl_next_up_minimal">Sans vignette</string>
     <string name="lbl_next_up_extended">Avec vignette</string>
@@ -345,7 +345,7 @@
     <string name="no_user_warning">Nous n\'avons trouvé aucun compte !
 \nAjoutez un nouveau compte en appuyant sur le bouton \"Ajouter un compte\".</string>
     <string name="welcome_content">Connectez-vous à votre serveur pour commencer.</string>
-    <string name="welcome_title">Bienvenue sur DUNE !</string>
+    <string name="welcome_title">Bienvenue sur VOIDSTREAM !</string>
     <string name="saved_servers">Serveurs sauvegardés</string>
     <string name="press_to_close">Appuyer pour fermer</string>
     <string name="pref_next_up_behavior_title">Afficher les infos de la prochaine vidéo</string>
@@ -706,7 +706,7 @@
     <string name="show_family_row">Afficher la rangée Famille</string>
     <string name="show_horror_row">Afficher la rangée Horreur</string>
     <string name="show_fantasy_row">Afficher la rangée Fantastique</string>
-    <string name="exit_app_title">Quitter DUNE</string>
+    <string name="exit_app_title">Quitter VOIDSTREAM</string>
     <string name="exit_app_message">Êtes-vous sûr de vouloir quitter ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>

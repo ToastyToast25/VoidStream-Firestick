@@ -281,10 +281,10 @@
     <string name="no_user_warning">لم نستطع العثور على أي مستخدم!
 \nأضف مستخدم جديد بالضغط على زر \"إضافة مستخدم\".</string>
     <string name="welcome_content">إتصل بخادمك للبدأ.</string>
-    <string name="welcome_title">مرحبا الى DUNE!</string>
+    <string name="welcome_title">مرحبا الى VOIDSTREAM!</string>
     <string name="saved_servers">الخوادم المحفوظة</string>
     <string name="press_to_close">إظغط للغلق</string>
-    <string name="no_network_permissions">DUNE يحتاج إلى صلاحيات الشبكة للعمل</string>
+    <string name="no_network_permissions">VOIDSTREAM يحتاج إلى صلاحيات الشبكة للعمل</string>
     <string name="lbl_switch_user">تغيير المستخدم</string>
     <string name="user_picker_last_user_summary">إظهار آخر مستخدم نشط</string>
     <string name="user_picker_disable_summary">إظهار شاشة تسجيل الدخول دائما</string>

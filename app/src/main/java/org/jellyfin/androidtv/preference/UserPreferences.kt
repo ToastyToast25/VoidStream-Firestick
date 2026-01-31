@@ -9,6 +9,7 @@ import org.jellyfin.androidtv.preference.constant.AppTheme
 import org.jellyfin.androidtv.preference.constant.AudioBehavior
 import org.jellyfin.androidtv.preference.constant.AudioLanguage
 import org.jellyfin.androidtv.preference.constant.CarouselSortBy
+import org.jellyfin.androidtv.preference.constant.GenreSortBy
 import org.jellyfin.androidtv.preference.constant.ClockBehavior
 import org.jellyfin.androidtv.preference.constant.NextUpBehavior
 import org.jellyfin.androidtv.preference.constant.RatingType
@@ -239,6 +240,11 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		 * Sorting method for carousel items
 		 */
 		var carouselSortBy = enumPreference("carousel_sort_by", CarouselSortBy.RELEASE_DATE)
+
+		/**
+		 * Sorting method for genre row items
+		 */
+		var genreSortBy = enumPreference("genre_sort_by", GenreSortBy.DATE_ADDED)
 
 		/**
 		 * Enable Series in carousel alongside Movies

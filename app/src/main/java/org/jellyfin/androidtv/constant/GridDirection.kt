@@ -9,6 +9,8 @@ enum class GridDirection(
 	/**
 	 * Vertical.
 	 */
+	HORIZONTAL(R.string.grid_direction_horizontal),
+
 	VERTICAL(R.string.grid_direction_vertical),
 
 	/**

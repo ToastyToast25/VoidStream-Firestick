@@ -645,7 +645,7 @@
     <string name="pref_audio_default_language">Standard lydspråk</string>
     <string name="pref_default_language_none">(Misligholde)</string>
     <string name="show_fantasy_row">Fantasi</string>
-    <string name="exit_app_title">Avkjøring DUNE</string>
+    <string name="exit_app_title">Avkjøring VOIDSTREAM</string>
     <string name="exit_app_message">Er du sikker på at du vil avslutte?</string>
     <string name="yes">Ja</string>
     <string name="no">nej</string>

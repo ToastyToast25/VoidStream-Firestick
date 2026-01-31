@@ -204,7 +204,7 @@ class HomeRowsFragment : RowsSupportFragment(), AudioEventListener, View.OnKeyLi
 						Timber.e(e, "Error adding row to adapter")
 					}
 				}
-                if (userSettingPreferences.get(userSettingPreferences.showMusicVideosRow)) {
+                if (userSettingPreferences[userSettingPreferences.showMusicVideosRow]) {
                     try {
                         Timber.d("Adding Music Videos row")
                         helper.loadMusicVideosRow().addToRowsAdapter(requireContext(), cardPresenter, rowsAdapter)

@@ -9,6 +9,10 @@ enum class PosterSize(
 	/**
 	 * Medium.
 	 */
+	SMALLEST(R.string.image_size_smallest),
+
+	SMALL(R.string.image_size_small),
+
 	MED(R.string.image_size_medium),
 
 	/**

@@ -297,7 +297,7 @@
     <string name="server_field_empty">Das Adressfeld darf nicht leer sein</string>
     <string name="server_connection_failed">Verbindung zum Server konnte nicht hergestellt werden</string>
     <string name="server_connecting">Verbinden mit %1$s</string>
-    <string name="login_help_description">DUNE benötigt einen Server, mit dem eine Verbindung hergestellt werden kann. Besuche unsere Dokumentation unter docs.jellyfin.org oder scanne den QR-Code, um deine ersten Schritte mit Jellyfin zu machen.</string>
+    <string name="login_help_description">VOIDSTREAM benötigt einen Server, mit dem eine Verbindung hergestellt werden kann. Besuche unsere Dokumentation unter docs.jellyfin.org oder scanne den QR-Code, um deine ersten Schritte mit Jellyfin zu machen.</string>
     <string name="login_help_title">Brauchst du Hilfe\?</string>
     <string name="connect_manually_by_address">Server-Adresse eingeben</string>
     <string name="discovered_servers_empty">Es wurden keine Server im lokalen Netzwerk gefunden.</string>
@@ -332,7 +332,7 @@
     <string name="user_picker_disable_title">Deaktivieren</string>
     <string name="auto_sign_in">Automatisch anmelden</string>
     <string name="lbl_switch_user">Konto wechseln</string>
-    <string name="no_network_permissions">DUNE benötigt zum Funktionieren Netzwerkberechtigungen</string>
+    <string name="no_network_permissions">VOIDSTREAM benötigt zum Funktionieren Netzwerkberechtigungen</string>
     <string name="pref_theme_muted_purple">Gedämpftes Violett</string>
     <string name="press_to_close">Zum Schließen klicken</string>
     <string name="add_user">Konto hinzufügen</string>
@@ -340,7 +340,7 @@
     <string name="no_user_warning">Wir konnten keine Konten finden!
 \nFüge ein neues Konto hinzu, indem du auf die Schaltfläche \"Konto hinzufügen\" drückst.</string>
     <string name="welcome_content">Verbinde dich mit deinem Server, um loszulegen.</string>
-    <string name="welcome_title">Willkommen bei DUNE!</string>
+    <string name="welcome_title">Willkommen bei VOIDSTREAM!</string>
     <string name="saved_servers">Gespeicherte Server</string>
     <string name="lbl_next_up_minimal">Ohne Vorschaubild</string>
     <string name="lbl_next_up_extended">Mit Vorschaubild</string>
@@ -381,7 +381,7 @@
     <string name="licenses_link_description">Lizenzen der von der App verwendeten Bibliotheken anzeigen</string>
     <string name="licenses_link">Lizenzen</string>
     <string name="searchable_settings_description">Medien</string>
-    <string name="searchable_hint">DUNE durchsuchen</string>
+    <string name="searchable_hint">VOIDSTREAM durchsuchen</string>
     <string name="home_section_i">Startseitenabschnitt %1$d</string>
     <string name="home_section_none">Keiner</string>
     <string name="home_section_livetv">Live-TV</string>
@@ -690,7 +690,7 @@
     <string name="show_family_row">Familien-Reihe</string>
     <string name="show_horror_row">Horror-Reihe</string>
     <string name="show_fantasy_row">Fantasy-Reihe</string>
-    <string name="exit_app_title">Ausgang DUNE</string>
+    <string name="exit_app_title">Ausgang VOIDSTREAM</string>
     <string name="exit_app_message">Möchten Sie wirklich beenden?</string>
     <string name="yes">ja</string>
     <string name="no">nein</string>

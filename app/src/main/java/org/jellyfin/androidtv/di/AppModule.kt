@@ -90,7 +90,7 @@ val appModule = module {
 			context = androidContext()
 
 			// Add client info
-			clientInfo = ClientInfo("Dune Android TV", BuildConfig.VERSION_NAME)
+			clientInfo = ClientInfo("VoidStream Android TV", BuildConfig.VERSION_NAME)
 			deviceInfo = get(defaultDeviceInfo)
 
 			// Change server version

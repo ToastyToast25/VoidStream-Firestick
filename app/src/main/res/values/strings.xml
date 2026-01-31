@@ -2,9 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <!-- App Name -->
-    <string name="app_name">DUNE</string>
-    <string name="app_name_release" translatable="false" tools:ignore="UnusedResources">DUNE</string>
-    <string name="app_name_debug" translatable="false" tools:ignore="UnusedResources">DUNE Debug</string>
+    <string name="app_name">VOIDSTREAM</string>
+    <string name="app_name_release" translatable="false" tools:ignore="UnusedResources">VOIDSTREAM</string>
+    <string name="app_name_debug" translatable="false" tools:ignore="UnusedResources">VOIDSTREAM Debug</string>
 
     <!-- General UI Labels -->
     <string name="loading">Loading…</string>
@@ -150,7 +150,7 @@
     <string name="no_results_found">No results found</string>
     <string name="start_typing">Start typing to search</string>
     <string name="use_keyboard_or">Use keyboard or voice search</string>
-    <string name="searchable_hint">Search Dune</string>
+    <string name="searchable_hint">Search VoidStream</string>
     <string name="searchable_settings_description">Media</string>
 
     <!-- Library & Collections -->
@@ -679,6 +679,7 @@
     <string name="grid_direction">Grid direction</string>
     <string name="grid_direction_vertical">Vertical</string>
     <string name="grid_direction_list">List</string>
+    <string name="grid_direction_horizontal">Horizontal</string>
     <string name="enable_smart_view">Enable smart screen</string>
     <string name="enable_smart_view_description">Smart screen shows relevant items instead of a grid</string>
 
@@ -806,7 +807,7 @@
     <string name="login_quickconnect_step_2">2.Open the user menu and go to the Quick Connect page</string>
     <string name="login_quickconnect_step_3">3.Enter the following code:</string>
     <string name="login_help_title">Need help?</string>
-    <string name="login_help_description">Dune requires a server to connect with. Visit the documentation at docs.jellyfin.org or scan the QR code to get started.</string>
+    <string name="login_help_description">VoidStream requires a server to connect with. Visit the documentation at docs.jellyfin.org or scan the QR code to get started.</string>
     <string name="help">Help</string>
 
     <!-- User Management -->
@@ -837,7 +838,7 @@
     <string name="always_authenticate_description">Enabling this function disables auto sign in</string>
 
     <!-- Welcome -->
-    <string name="welcome_title">Welcome to Dune!</string>
+    <string name="welcome_title">Welcome to VoidStream!</string>
     <string name="welcome_content">Connect to your server to get started.</string>
 
     <!-- Button Remapping -->
@@ -888,7 +889,7 @@
     <string name="enable_playback_module_description">This is an experimental feature. No support is provided.</string>
     <string name="pref_developer_link">Experimental Features</string>
     <string name="pref_developer_link_description">Advanced and experimental features</string>
-    <string name="no_network_permissions">Dune requires network permissions to function</string>
+    <string name="no_network_permissions">VoidStream requires network permissions to function</string>
     <string name="disable_ui_mode_warning">Disable device type warning</string>
     <string name="app_notification_uimode_invalid">This app is optimized for televisions. We recommend using the mobile app.</string>
 
@@ -952,7 +953,7 @@
     <string name="license_license">License</string>
 
     <!-- Exit Confirmation -->
-    <string name="exit_app_title">Exit DUNE</string>
+    <string name="exit_app_title">Exit VOIDSTREAM</string>
     <string name="exit_app_message">Are you sure you want to exit?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>

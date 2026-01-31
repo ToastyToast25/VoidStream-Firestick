@@ -1019,7 +1019,7 @@ public class BrowseGridFragment extends Fragment implements View.OnKeyListener {
 
     private void openSettings() {
         boolean allowViewSelection = userViewsRepository.getValue().allowViewSelection(mFolder.getCollectionType());
-        startActivity(ActivityDestinations.INSTANCE.displayPreferences(getContext(), mFolder.getDisplayPreferencesId(), allowViewSelection));
+        startActivity(ActivityDestinations.INSTANCE.displayPreferencesCompose(getContext(), mFolder.getDisplayPreferencesId(), allowViewSelection));
     }
 
     private void setupAlphabetSidebar() {

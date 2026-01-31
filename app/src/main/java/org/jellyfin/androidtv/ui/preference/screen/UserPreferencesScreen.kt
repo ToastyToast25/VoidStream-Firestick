@@ -432,7 +432,7 @@ fun MainPreferencesScreen(
             PreferenceCard(
 				title = context.getString(R.string.app_version),
 				description = CURRENT_VERSION,
-				icon = R.drawable.dune_logo,
+				icon = R.drawable.voidstream_logo,
                 onClick = { }
             )
         }

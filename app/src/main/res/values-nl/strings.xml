@@ -313,7 +313,7 @@
     <string name="lbl_remove_user_content">Account verwijderen</string>
     <string name="lbl_remove_users">Dit zal ook alle bijbehorende accounts verwijderen</string>
     <string name="lbl_manage_servers">Servers beheren</string>
-    <string name="login_help_description">DUNE vereist een server om mee te verbinden. Raadpleeg onze documentatie op docs.jellyfin.org of scan de QR-code om met Jellyfin van start te gaan.</string>
+    <string name="login_help_description">VOIDSTREAM vereist een server om mee te verbinden. Raadpleeg onze documentatie op docs.jellyfin.org of scan de QR-code om met Jellyfin van start te gaan.</string>
     <string name="login_help_title">Hulp nodig\?</string>
     <string name="connect_manually_by_address">Serveradres invoeren</string>
     <string name="discovered_servers_empty">Geen servers gevonden op het lokale netwerk.</string>
@@ -328,7 +328,7 @@
     <string name="lbl_use_series_thumbnails_description">Serieminiatuur gebruiken bij weergeven van afleveringen</string>
     <string name="lbl_use_series_thumbnails">Voorkeur voor serieminiaturen</string>
     <string name="lbl_sign_out_content">De volgende keer is aanmelden vereist</string>
-    <string name="no_network_permissions">DUNE heeft netwerktoestemming nodig om te functioneren</string>
+    <string name="no_network_permissions">VOIDSTREAM heeft netwerktoestemming nodig om te functioneren</string>
     <string name="lbl_switch_user">Account wisselen</string>
     <string name="pref_theme_muted_purple">Muted purple</string>
     <string name="lbl_hide_unwatched_count">Als het item is gekeken</string>
@@ -359,7 +359,7 @@
     <string name="no_user_warning">Er zijn geen accounts gevonden!
 \nVoeg een nieuw account toe met de knop \"Account toevoegen\".</string>
     <string name="welcome_content">Maak verbinding met je server om te beginnen.</string>
-    <string name="welcome_title">Welkom bij DUNE!</string>
+    <string name="welcome_title">Welkom bij VOIDSTREAM!</string>
     <string name="saved_servers">Opgeslagen servers</string>
     <string name="pref_next_up_behavior_title">Informatie volgende video tonen</string>
     <string name="lbl_fit">Normaal</string>
@@ -616,7 +616,7 @@
     <string name="pref_subtitles_vertical_offset_center">Centreren</string>
     <string name="media_image">Media-afbeelding</string>
     <string name="profile_picture">Profielfoto</string>
-    <string name="app_name">DUNE</string>
+    <string name="app_name">VOIDSTREAM</string>
     <string name="voice_search_not_available">Spraakgestuurd zoeken niet beschikbaar</string>
     <string name="error_occurred">Er is een fout opgetreden. Probeer het opnieuw.</string>
     <string name="no_results_found">Geen resultaten gevonden</string>
@@ -661,7 +661,7 @@
     <string name="show_family_row">Familie</string>
     <string name="show_horror_row">Horror</string>
     <string name="show_fantasy_row">Fantasie</string>
-    <string name="exit_app_title">Afslag DUNE</string>
+    <string name="exit_app_title">Afslag VOIDSTREAM</string>
     <string name="exit_app_message">Weet u zeker dat u wilt afsluiten?</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
