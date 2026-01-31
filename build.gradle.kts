@@ -39,8 +39,8 @@ subprojects {
 
 	// Configure default Android options
 	plugins.withType<com.android.build.gradle.BasePlugin> {
-		configure<com.android.build.gradle.BaseExtension> {
-			compileOptions {
+		extensions.configure<com.android.build.api.dsl.CommonExtension> {
+			compileOptions.apply {
 				sourceCompatibility = JavaVersion.VERSION_1_8
 				targetCompatibility = JavaVersion.VERSION_1_8
 			}

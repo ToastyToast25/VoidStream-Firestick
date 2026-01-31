@@ -37,7 +37,7 @@ import org.jellyfin.androidtv.util.UpdateResult
 import org.jellyfin.sdk.model.serializer.toUUIDOrNull
 import timber.log.Timber
 
-private const val CURRENT_VERSION = "0.1.1"
+private const val CURRENT_VERSION = "0.1.2"
 
 
 @Composable

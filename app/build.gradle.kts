@@ -1,6 +1,5 @@
 plugins {
 	id("com.android.application")
-	kotlin("android")
 	alias(libs.plugins.kotlin.serialization)
 	alias(libs.plugins.kotlin.compose)
 	alias(libs.plugins.aboutlibraries)
@@ -31,6 +30,7 @@ android {
 		viewBinding = true
 		compose = true
 		dataBinding = true
+		resValues = true
 	}
 
 	compileOptions {
@@ -88,7 +88,7 @@ android {
 			applicationId = "VoidStream.enhanced.tv"
 
 			// Set specific version name for enhanced variant
-			versionName = "0.1.1"
+			versionName = "0.1.2"
 
 			// Set app name for the enhanced version
 			resValue("string", "app_name_release", "VOIDSTREAM")
@@ -105,21 +105,6 @@ android {
 		abortOnError = false
 		sarifReport = true
 		checkDependencies = true
-	}
-
-	// Configure output file names for APKs
-	applicationVariants.all {
-		val variant = this
-		val variantName = variant.name
-		val versionName = variant.versionName
-		variant.outputs.all {
-			val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-			if (variantName == "enhanced") {
-				output.outputFileName = "VoidStream.androidtv-0.1.1.apk"
-			} else {
-				output.outputFileName = "VoidStream.androidtv-${versionName}.apk"
-			}
-		}
 	}
 
 	testOptions.unitTests.all {
@@ -145,9 +130,9 @@ tasks.register("buildEnhanced") {
 	doLast {
 		println("\nBuilding Enhanced version with:")
 		println("Package ID: VoidStream.enhanced.tv")
-		println("Version: 0.1.1")
+		println("Version: 0.1.2")
 		println("App Name: VOIDSTREAM")
-		println("Filename: VoidStream.androidtv-0.1.1.apk")
+		println("Filename: VoidStream.androidtv-0.1.2.apk")
 		println("The APK will be available in: app/build/outputs/apk/enhanced/release/")
 	}
 }
