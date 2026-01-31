@@ -37,7 +37,7 @@ object ImagePreloader : KoinComponent {
                     try {
                         val request = ImageRequest.Builder(context)
                             .data(url)
-                            .size(Size.ORIGINAL)
+                            .size(coil3.size.Size(960, 540))
                             .build()
                         imageLoader.enqueue(request)
                     } catch (e: Exception) {

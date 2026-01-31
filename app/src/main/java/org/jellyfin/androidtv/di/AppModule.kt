@@ -112,8 +112,11 @@ val appModule = module {
 		val context = androidContext()
 		val userPreferences: UserPreferences = get()
 
-		// Memory cache size (in bytes)
-		val memoryCacheSize = 700L * 1024 * 1024
+		// Memory cache size scaled to device RAM (25% of available, capped at 250MB)
+		val activityManager = context.getSystemService(android.content.Context.ACTIVITY_SERVICE) as? android.app.ActivityManager
+		val memoryClass = activityManager?.memoryClass ?: 128
+		val memoryCacheSize = (memoryClass.toLong() * 1024 * 1024 / 4).coerceAtMost(250L * 1024 * 1024)
+		Timber.d("Image memory cache: ${memoryCacheSize / 1024 / 1024}MB (device memoryClass: ${memoryClass}MB)")
 		val diskCacheSizeMb = userPreferences[UserPreferences.diskCacheSizeMb]
 		val diskCacheDir = File(context.cacheDir, "image_cache")
 		if (!diskCacheDir.exists()) {
