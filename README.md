@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="VOIDSTREAM (2).png" alt="VOIDSTREAM" width="100%">
+  <img src="app/src/main/res/mipmap-xxhdpi/ic_launcher_background.webp" alt="VOIDSTREAM" width="200">
 </p>
 
 # VOIDSTREAM - Jellyfin Android TV Client
