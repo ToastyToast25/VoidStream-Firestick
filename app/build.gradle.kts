@@ -88,7 +88,7 @@ android {
 			applicationId = "VoidStream.enhanced.tv"
 
 			// Set specific version name for enhanced variant
-			versionName = "0.2.3"
+			versionName = "0.2.4"
 
 			// Set app name for the enhanced version
 			resValue("string", "app_name_release", "VOIDSTREAM")
@@ -130,9 +130,9 @@ tasks.register("buildEnhanced") {
 	doLast {
 		println("\nBuilding Enhanced version with:")
 		println("Package ID: VoidStream.enhanced.tv")
-		println("Version: 0.2.3")
+		println("Version: 0.2.4")
 		println("App Name: VOIDSTREAM")
-		println("Filename: VoidStream.androidtv-0.2.3.apk")
+		println("Filename: VoidStream.androidtv-0.2.4.apk")
 		println("The APK will be available in: app/build/outputs/apk/enhanced/release/")
 	}
 }
@@ -140,7 +140,7 @@ tasks.register("buildEnhanced") {
 
 
 dependencies {
-	implementation("androidx.compose.material:material:1.5.0")
+	implementation("androidx.compose.material:material:1.7.8")
 	// Jellyfin
 	implementation(projects.playback.core)
 	implementation(projects.playback.jellyfin)
@@ -182,8 +182,8 @@ dependencies {
 	implementation(libs.bundles.androidx.compose)
 	implementation("androidx.tv:tv-material:1.0.0")
 	implementation("androidx.palette:palette:1.0.0")
-	implementation("androidx.compose.material3:material3:1.2.1")
-	implementation("androidx.compose.material:material-icons-extended")
+	implementation(libs.androidx.material3)
+	implementation("androidx.compose.material:material-icons-extended:1.7.8")
 
 	// Dependency Injection
 	implementation(libs.bundles.koin)
@@ -215,10 +215,6 @@ dependencies {
 
 	// Licenses
 	implementation(libs.aboutlibraries)
-
-	// Logging
-	implementation(libs.timber)
-	implementation(libs.slf4j.timber)
 
 	// Network
 	implementation("com.squareup.okhttp3:okhttp:4.11.0")

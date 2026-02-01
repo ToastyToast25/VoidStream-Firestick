@@ -295,7 +295,7 @@
     <string name="server_field_empty">L\'adresse ne peut pas être vide</string>
     <string name="server_connection_failed">Impossible de se connecter au serveur</string>
     <string name="server_connecting">Connexion vers %1$s</string>
-    <string name="pref_backdrop_blur_description">Contrôlez l\'effet de flou des images d\'arrière-plan de 0 % (pas de flou) à 100 % (flou complet)</string>
+    <string name="pref_backdrop_blur_description" formatted="false">Contrôlez l\'effet de flou des images d\'arrière-plan de 0 % (pas de flou) à 100 % (flou complet)</string>
     <string name="lbl_remove_user_content">Supprimer le compte</string>
     <string name="lbl_remove_users">Cela supprimera également les comptes associés</string>
     <string name="lbl_manage_servers">Gérer les serveurs</string>

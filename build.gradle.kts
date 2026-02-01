@@ -33,7 +33,7 @@ subprojects {
 	// Configure default Kotlin compiler options
 	tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile> {
 		compilerOptions {
-			jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8
+			jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
 		}
 	}
 
@@ -41,8 +41,8 @@ subprojects {
 	plugins.withType<com.android.build.gradle.BasePlugin> {
 		extensions.configure<com.android.build.api.dsl.CommonExtension> {
 			compileOptions.apply {
-				sourceCompatibility = JavaVersion.VERSION_1_8
-				targetCompatibility = JavaVersion.VERSION_1_8
+				sourceCompatibility = JavaVersion.VERSION_21
+				targetCompatibility = JavaVersion.VERSION_21
 			}
 		}
 	}

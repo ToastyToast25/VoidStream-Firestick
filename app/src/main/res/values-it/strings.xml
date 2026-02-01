@@ -349,7 +349,7 @@
     <string name="lbl_user_last_used">Utilizzato l\'ultima volta il %1$s alle %2$s</string>
     <string name="lbl_remove_server">Rimuovi server</string>
     <string name="lbl_sign_out_content">Richiede il login al prossimo utilizzo</string>
-    <string name="pref_backdrop_blur_description">Controlla l\'effetto sfocatura delle immagini di sfondo da 0% (nessuna sfocatura) a 100% (sfocatura completa)</string>
+    <string name="pref_backdrop_blur_description" formatted="false">Controlla l\'effetto sfocatura delle immagini di sfondo da 0% (nessuna sfocatura) a 100% (sfocatura completa)</string>
     <string name="lbl_remove_user_content">Rimuovi account</string>
     <string name="lbl_remove_users">Questo rimuoverà anche tutti gli utenti associati</string>
     <string name="lbl_manage_servers">Gestisci i server</string>

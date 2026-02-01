@@ -309,7 +309,7 @@
     <string name="lbl_user_server">%1$s om %2$s</string>
     <string name="lbl_user_last_used">Laatst gebruikt op %1$s om %2$s</string>
     <string name="lbl_remove_server">Server verwijderen</string>
-    <string name="pref_backdrop_blur_description">Regel het vervagingseffect van achtergrondafbeeldingen van 0% (geen vervaging) tot 100% (volledige vervaging)</string>
+    <string name="pref_backdrop_blur_description" formatted="false">Regel het vervagingseffect van achtergrondafbeeldingen van 0% (geen vervaging) tot 100% (volledige vervaging)</string>
     <string name="lbl_remove_user_content">Account verwijderen</string>
     <string name="lbl_remove_users">Dit zal ook alle bijbehorende accounts verwijderen</string>
     <string name="lbl_manage_servers">Servers beheren</string>

@@ -4,7 +4,6 @@ import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.util.DisplayMetrics
-import android.view.WindowManager
 import androidx.annotation.AnyRes
 import org.jellyfin.androidtv.preference.UserPreferences
 import org.jellyfin.androidtv.util.apiclient.JellyfinImage
@@ -55,9 +54,7 @@ class ImageHelper(
 	}
 
 	fun getMaxImageHeight(): Int {
-		val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-		val displayMetrics = DisplayMetrics()
-		windowManager.defaultDisplay.getMetrics(displayMetrics)
+		val displayMetrics = context.resources.displayMetrics
 
 		val screenHeight = displayMetrics.heightPixels
 		val screenWidth = displayMetrics.widthPixels
